@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
-import 'package:scrollable_reorderable_navbar/scrollable_reorderable_navbar.dart';
-
-
 
 class Sample extends StatefulWidget {
   const Sample({super.key});
@@ -12,7 +9,6 @@ class Sample extends StatefulWidget {
 }
 
 class _SampleState extends State<Sample> {
-
   final _qrBarCodeScannerDialogPlugin = QrBarCodeScannerDialog();
   String? code;
 

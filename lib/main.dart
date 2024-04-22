@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled7/Pages/home.dart';
-import 'package:untitled7/Pages/sample_page.dart';
 import 'package:untitled7/bottomNavBar.dart';
-
-import 'Pages/sample_page2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,9 +20,10 @@ class MyApp extends StatelessWidget {
         title: 'Captain',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
-          useMaterial3: true,),
+          useMaterial3: true,
+        ),
         debugShowCheckedModeBanner: false,
-        home:  BottomNavBar(),
+        home: BottomNavBar(),
       ),
     );
   }

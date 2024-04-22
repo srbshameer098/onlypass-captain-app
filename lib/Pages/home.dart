@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,11 +22,13 @@ class _HomeState extends State<Home> {
     'Wallet',
     'Enquiries',
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF191919),
       appBar: AppBar(
+
         title: Row(
           children: [
             Image.asset(
@@ -33,25 +36,23 @@ class _HomeState extends State<Home> {
               height: 30.h,
               width: 80.w,
             ),
-             SizedBox(
-              width: 18.w,
-            ),
+            SizedBox(width: 36.w,),
             Container(
-              height: 50.h,
+              height: 40.h,
               width: 207.w,
               decoration: ShapeDecoration(
                 color: const Color(0x19FEFEFE),
                 shape: RoundedRectangleBorder(
-                  side:  BorderSide(width: 0.30.w, color: const Color(0x26B2B2B2)),
+                  side: BorderSide(width: 0.30.w, color: const Color(0x26B2B2B2)),
                   borderRadius: BorderRadius.circular(140.r),
                 ),
               ),
               child: Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 14.w),
+                padding: EdgeInsets.symmetric(horizontal: 14.w),
                 child: Row(
                   children: [
                     CircleAvatar(
-                      radius: 15,
+                      radius: 14.r,
                       backgroundColor: const Color(0xFF202020),
                       child: Image.asset(
                         'assets/icons/performance.png',
@@ -59,17 +60,15 @@ class _HomeState extends State<Home> {
                         width: 16.w,
                       ),
                     ),
-                     SizedBox(
+                    SizedBox(
                       width: 10.w,
                     ),
-                     Text(
+                    Text(
                       'See your performance',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         color: Colors.white,
                         fontSize: 12.sp,
-                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w500,
-                        height: 0,
                       ),
                     ),
                   ],
@@ -79,37 +78,40 @@ class _HomeState extends State<Home> {
           ],
         ),
         actions: [
-          Padding(
-            padding:  EdgeInsets.all(20.0.w),
-            child: Image.asset(
-              'assets/icons/account.png',
-              height: 40.h,
-              width: 40.w,
-            ),
+          Row(
+            children: [
+              Image.asset(
+                'assets/icons/account.png',
+                height: 24.h,
+                width: 24.w,
+              ),
+              SizedBox(
+                width: 29.w,
+              )
+            ],
           )
         ],
+        centerTitle: false,
         backgroundColor: Colors.black,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding:  EdgeInsets.all(20.0.w),
+            padding: EdgeInsets.all(29.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         Text(
                           'Quick view notification',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             color: const Color(0xFF818181),
                             fontSize: 14.sp,
-                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
-                            height: 0,
                           ),
                         ),
                         Padding(
@@ -119,10 +121,9 @@ class _HomeState extends State<Home> {
                             backgroundColor: const Color(0xFF00FF00),
                             child: Text(
                               '9+',
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
                                 color: Colors.black,
                                 fontSize: 10.sp,
-                                fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -132,41 +133,39 @@ class _HomeState extends State<Home> {
                     ),
                     Text(
                       'view all',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         color: const Color(0xFFFEFEFE),
                         fontSize: 14.sp,
-                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w500,
                         decoration: TextDecoration.underline,
                         decorationColor: Colors.white,
-                        decorationThickness: 1,
+                        decorationThickness: 1.w,
                       ),
                     )
                   ],
                 ),
                 Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 20.w),
+                  padding: EdgeInsets.symmetric(vertical: 20.w),
                   child: Container(
                     width: 376.w,
                     height: 190.h,
-                    decoration:  BoxDecoration(
+                    decoration: BoxDecoration(
                         color: const Color(0xFF282828),
                         borderRadius: BorderRadius.all(Radius.circular(3.r))),
                     child: Column(
                       children: [
                         Padding(
-                          padding:  EdgeInsets.symmetric(
+                          padding: EdgeInsets.symmetric(
                               horizontal: 20.h, vertical: 10.w),
                           child: Container(
                             width: 344.w,
                             height: 64.h,
-                            decoration:  BoxDecoration(
+                            decoration: BoxDecoration(
                                 color: const Color(0xFFFEFEFE),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(3.r))),
                             child: Padding(
-                              padding:
-                                   EdgeInsets.symmetric(horizontal: 15.0.h),
+                              padding: EdgeInsets.symmetric(horizontal: 15.0.h),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -175,7 +174,7 @@ class _HomeState extends State<Home> {
                                   Container(
                                     width: 40.w,
                                     height: 40.h,
-                                    decoration:  ShapeDecoration(
+                                    decoration: ShapeDecoration(
                                       image: const DecorationImage(
                                         image: NetworkImage(
                                             "https://via.placeholder.com/40x40"),
@@ -188,17 +187,16 @@ class _HomeState extends State<Home> {
                                       ),
                                     ),
                                   ),
-                                   Column(
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Jayaram Ravi',
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           color: const Color(0xFF191919),
                                           fontSize: 14.sp,
-                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -207,27 +205,24 @@ class _HomeState extends State<Home> {
                                       ),
                                       Text(
                                         '3 Months plan',
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           color: const Color(0xFF9B9B9B),
                                           fontSize: 12.sp,
-                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
                                         ),
                                       )
                                     ],
                                   ),
-                                   Column(
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text(
                                         '₹ ' '5,799 .00',
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           color: const Color(0xFF191919),
                                           fontSize: 14.sp,
-                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
-                                          height: 0,
                                         ),
                                       ),
                                       SizedBox(
@@ -235,12 +230,10 @@ class _HomeState extends State<Home> {
                                       ),
                                       Text(
                                         'DUE YESTERDAY',
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           color: const Color(0xFFE83507),
                                           fontSize: 12.sp,
-                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
-                                          height: 0,
                                         ),
                                       )
                                     ],
@@ -251,18 +244,17 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Padding(
-                          padding:  EdgeInsets.symmetric(
+                          padding: EdgeInsets.symmetric(
                               horizontal: 20.h, vertical: 10.w),
                           child: Container(
                             width: 344.w,
                             height: 64.h,
-                            decoration:  BoxDecoration(
+                            decoration: BoxDecoration(
                                 color: const Color(0xFFFEFEFE),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(3.r))),
                             child: Padding(
-                              padding:
-                                   EdgeInsets.symmetric(horizontal: 15.0.w),
+                              padding: EdgeInsets.symmetric(horizontal: 15.0.w),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -271,7 +263,7 @@ class _HomeState extends State<Home> {
                                   Container(
                                     width: 40.w,
                                     height: 40.h,
-                                    decoration:  ShapeDecoration(
+                                    decoration: ShapeDecoration(
                                       image: const DecorationImage(
                                         image: NetworkImage(
                                             "https://via.placeholder.com/40x40"),
@@ -284,19 +276,17 @@ class _HomeState extends State<Home> {
                                       ),
                                     ),
                                   ),
-                                   Column(
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Suhail Ibrahim',
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           color: const Color(0xFF191919),
                                           fontSize: 14.sp,
-                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
-                                          height: 0,
                                         ),
                                       ),
                                       SizedBox(
@@ -304,28 +294,24 @@ class _HomeState extends State<Home> {
                                       ),
                                       Text(
                                         '1 Month plan',
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           color: const Color(0xFF9B9B9B),
                                           fontSize: 12.sp,
-                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
-                                          height: 0,
                                         ),
                                       )
                                     ],
                                   ),
-                                   Column(
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text(
                                         '₹ ' '1,650 .00',
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           color: const Color(0xFF191919),
                                           fontSize: 14.sp,
-                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
-                                          height: 0,
                                         ),
                                       ),
                                       SizedBox(
@@ -333,10 +319,9 @@ class _HomeState extends State<Home> {
                                       ),
                                       Text(
                                         'DUE IN 3 DAYS',
-                                        style: TextStyle(
+                                        style: GoogleFonts.montserrat(
                                           color: const Color(0xFFF0BE0A),
                                           fontSize: 12.sp,
-                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
                                         ),
                                       )
@@ -351,18 +336,17 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                 Text(
+                Text(
                   'Manage your facility',
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                     color: const Color(0xFF818181),
                     fontSize: 14.sp,
-                    fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Padding(
                   padding:
-                       EdgeInsets.symmetric(horizontal: 10.h, vertical: 30.w),
+                      EdgeInsets.symmetric(horizontal: 10.h, vertical: 30.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -379,15 +363,14 @@ class _HomeState extends State<Home> {
                               height: 28.h,
                             ),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 10.h,
                           ),
                           Text(
                             texts[0],
-                            style:  TextStyle(
+                            style: GoogleFonts.montserrat(
                               color: Colors.white,
                               fontSize: 12.sp,
-                              fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w500,
                               height: 0,
                             ),
@@ -406,15 +389,14 @@ class _HomeState extends State<Home> {
                               height: 28.h,
                             ),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 10.h,
                           ),
                           Text(
                             texts[1],
-                            style:  TextStyle(
+                            style: GoogleFonts.montserrat(
                               color: Colors.white,
                               fontSize: 12.sp,
-                              fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w500,
                             ),
                           )
@@ -432,15 +414,14 @@ class _HomeState extends State<Home> {
                               height: 28.h,
                             ),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 10.h,
                           ),
                           Text(
                             texts[2],
-                            style:  TextStyle(
+                            style: GoogleFonts.montserrat(
                               color: Colors.white,
                               fontSize: 12.sp,
-                              fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w500,
                             ),
                           )
@@ -458,15 +439,14 @@ class _HomeState extends State<Home> {
                               height: 28.h,
                             ),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 10.h,
                           ),
                           Text(
                             texts[3],
-                            style:  TextStyle(
+                            style: GoogleFonts.montserrat(
                               color: Colors.white,
                               fontSize: 12.sp,
-                              fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w500,
                             ),
                           )
@@ -477,7 +457,7 @@ class _HomeState extends State<Home> {
                 ),
                 Container(
                   width: double.infinity,
-                  height: 1,
+                  height: 1.h,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment(1.00, 0.00),
@@ -490,85 +470,82 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   height: 30.h,
                 ),
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Create & edit classes/events ',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         color: const Color(0xFF818181),
                         fontSize: 14.sp,
-                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
                       'add new',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                           color: const Color(0xFFFEFEFE),
                           fontSize: 14.sp,
-                          fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w500,
                           decoration: TextDecoration.underline,
                           decorationColor: Colors.white,
-                          decorationThickness: 1),
+                          decorationThickness: 1.w),
                     )
                   ],
                 ),
-                 SizedBox(height: 15.h),
+                SizedBox(height: 15.h),
                 Row(
                   children: [
                     Container(
-                     padding:  EdgeInsets.all(8.w),
-                      decoration:  BoxDecoration(
+                      padding: EdgeInsets.all(8.w),
+                      decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(3.r))),
-                      child:  Center(
+                      child: Center(
                         child: Text(
                           'Upcoming (3)',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             color: const Color(0xFF191919),
                             fontSize: 14.sp,
-                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
                     ),
-                     SizedBox(width: 10.w),
+                    SizedBox(width: 10.w),
                     Container(
-                      padding:  EdgeInsets.all(8.w),
+                      padding: EdgeInsets.all(8.w),
                       decoration: BoxDecoration(
-                          border: Border.all(width: 1.w,color: const Color(0xFF4D4D4D)),
-                          borderRadius:  BorderRadius.all(Radius.circular(3.r))),
-                      child:  Center(
+                          border: Border.all(
+                              width: 1.w, color: const Color(0xFF4D4D4D)),
+                          borderRadius: BorderRadius.all(Radius.circular(3.r))),
+                      child: Center(
                         child: Text(
                           'Regular (2)',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             color: const Color(0xFF818181),
                             fontSize: 14.sp,
-                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
                     ),
-                     SizedBox(width: 10.w),
+                    SizedBox(width: 10.w),
                     Container(
-                      padding:  EdgeInsets.all(8.w),
+                      padding: EdgeInsets.all(8.w),
                       decoration: BoxDecoration(
-                          border: Border.all(width: 1.w,color: const Color(0xFF4D4D4D)),
+                          border: Border.all(
+                              width: 1.w, color: const Color(0xFF4D4D4D)),
                           borderRadius: BorderRadius.all(Radius.circular(3.r))),
-                      child:  Center(
+                      child: Center(
                         child: Text(
                           'Past (5)',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             color: const Color(0xFF818181),
                             fontSize: 14.sp,
-                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -586,117 +563,119 @@ class _HomeState extends State<Home> {
                       itemCount: 3,
                       itemBuilder: (context, position) {
                         return GestureDetector(
-                          onTap: () {
-                          },
-                          child: Column(
-                            children: [
-                              Stack(
-                                children: [
-                                  Container(
-                                    width: 152.w,
-                                    height: 194.h,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage("https://via.placeholder.com/152x194"),
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 163.h,
-                                    child: Container(
+                            onTap: () {},
+                            child: Column(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Container(
                                       width: 152.w,
-                                      height: 31.h,
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                          begin: const Alignment(-0.00, 1.00),
-                                          end: const Alignment(0, -1),
-                                          colors: [const Color(0x91191919), Colors.black.withOpacity(0.27000001072883606), const Color(0x00191919)],
+                                      height: 194.h,
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              "https://via.placeholder.com/152x194"),
+                                          fit: BoxFit.fill,
                                         ),
                                       ),
                                     ),
-                                  ),
-
-                                  Positioned(
-                                    left: 101.w,
-                                    top: 12.h,
-                                    child: Container(
-                                      width: 52.w,
-                                      height: 16.h,
-                                      decoration: const BoxDecoration(color: Colors.black),
-                                      child:  Center(child: Text(
-                                        'Weekly',
-                                        style: TextStyle(
+                                    Positioned(
+                                      top: 163.h,
+                                      child: Container(
+                                        width: 152.w,
+                                        height: 31.h,
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            begin: const Alignment(-0.00, 1.00),
+                                            end: const Alignment(0, -1),
+                                            colors: [
+                                              const Color(0x91191919),
+                                              Colors.black.withOpacity(
+                                                  0.27000001072883606),
+                                              const Color(0x00191919)
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: 101.w,
+                                      top: 12.h,
+                                      child: Container(
+                                        width: 52.w,
+                                        height: 16.h,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.black),
+                                        child: Center(
+                                          child: Text(
+                                            'Weekly',
+                                            style: GoogleFonts.montserrat(
+                                              color: const Color(0xFFFEFEFE),
+                                              fontSize: 10.sp,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: 15.w,
+                                      top: 172.h,
+                                      child: SizedBox(
+                                        width: 16.w,
+                                        height: 16.h,
+                                        child: Image.asset(
+                                          'assets/icons/groupIcon.png',
+                                          height: 28.h,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: 39.w,
+                                      top: 175.h,
+                                      child: Text(
+                                        '17 booked',
+                                        style: GoogleFonts.montserrat(
                                           color: const Color(0xFFFEFEFE),
                                           fontSize: 10.sp,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w400,
+                                          fontWeight: FontWeight.w500,
                                         ),
-                                      ),),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 15.w,
-                                    top: 172.h,
-                                    child: SizedBox(
-                                      width: 16.w,
-                                      height: 16.h,
-                                      child:Image.asset(
-                                        'assets/icons/groupIcon.png',
-                                        height: 28.h,
                                       ),
                                     ),
-                                  ),
-                                   Positioned(
-                                    left: 39.w,
-                                    top: 175.h,
-                                    child: Text(
-                                      '17 booked',
-                                      style: TextStyle(
-                                        color: const Color(0xFFFEFEFE),
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                  ],
+                                ),
                                 Padding(
-                                 padding: EdgeInsets.symmetric(vertical: 5.w),
-                                 child: SizedBox(
-                                  width: 153.w,
-                                  child: Text(
-                                    'Yoga class with Arun Master and team.',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12.sp,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.2.h,
-                                    ),
-                                  ),
-                                                               ),
-                               ),
-                               Padding(
-                                padding: EdgeInsets.symmetric(vertical: 5.h),
-                                child: SizedBox(
-                                  width: 153.w,
-                                  child:      Text(
-                                    'Fri, Dec 23 8:30am - 9:30am',
-                                    style: TextStyle(
-                                      color: const Color(0xFF818181),
-                                      fontSize: 10.sp,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0.21,
+                                  padding: EdgeInsets.symmetric(vertical: 5.w),
+                                  child: SizedBox(
+                                    width: 153.w,
+                                    child: Text(
+                                      'Yoga class with Arun Master and team.',
+                                      style: GoogleFonts.montserrat(
+                                        color: Colors.white,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.2.h,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              )
-                            ],
-                          )
-                        );
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                                  child: SizedBox(
+                                    width: 153.w,
+                                    child: Text(
+                                      'Fri, Dec 23 8:30am - 9:30am',
+                                      style: GoogleFonts.inter(
+                                        color: const Color(0xFF818181),
+                                        fontSize: 10.sp,
+                                        fontWeight: FontWeight.w400,
+                                        height: 0.21.h,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ));
                       },
                       separatorBuilder: (BuildContext context, int index) {
                         return SizedBox(
@@ -706,7 +685,21 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-
+                Container(
+                  width: double.infinity,
+                  height: 1.h,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment(1.00, 0.00),
+                      end: Alignment(-1, 0),
+                      colors: [
+                        Color(0x00191919),
+                        Color(0xFF737373),
+                        Color(0x00191919)
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

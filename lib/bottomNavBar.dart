@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled7/Pages/message_page.dart';
 import 'package:untitled7/Pages/scan_page.dart';
 
 import 'Pages/home.dart';
+
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
 
@@ -11,8 +14,12 @@ class BottomNavBar extends StatefulWidget {
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
-final screens = [ScanPage(),Home(),MessagePage(),];
-int selectedIndex1 = 1;
+final screens = [
+  const ScanPage(),
+  const Home(),
+  const MessagePage(),
+];
+int _selectedIndex = 1;
 
 class _BottomNavBarState extends State<BottomNavBar> {
   @override
@@ -20,53 +27,114 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       bottomNavigationBar: Theme(
           data: Theme.of(context).copyWith(
-            // sets the background color of the `BottomNavigationBar`
+              // sets the background color of the `BottomNavigationBar`
               canvasColor: Colors.black,
               // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-              primaryColor: Colors.green,
-              textTheme: Theme
-                  .of(context)
+              primaryColor: Colors.grey,
+              textTheme: Theme.of(context)
                   .textTheme
-                  .copyWith(bodySmall:  const TextStyle(color: Colors.yellow))), // sets the inactive color of the `BottomNavigationBar`
+                  .copyWith(bodySmall: const TextStyle(color: Colors.white))),
+          // sets the inactive color of the `BottomNavigationBar`
           child: BottomNavigationBar(
-            type: BottomNavigationBarType.shifting,
-            selectedItemColor: Colors.white,
-              unselectedItemColor:Color(0xFF828282),
-              backgroundColor: Color(0xFF191919),
-              currentIndex: selectedIndex1,
+            landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
+              selectedLabelStyle: GoogleFonts.montserrat(
+                color: Colors.white,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+              ),
+              unselectedLabelStyle: GoogleFonts.montserrat(
+                color: const Color(0xFF818181),
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w500,
+              ),
+              type: BottomNavigationBarType.shifting,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: const Color(0xFF828282),
+              backgroundColor: const Color(0xFF191919),
+              currentIndex: _selectedIndex,
               showSelectedLabels: true,
               showUnselectedLabels: true,
-              items:  [
-                 BottomNavigationBarItem(
-                   activeIcon: Image.asset('assets/icons/scan.png',height: 25,) ,
-                    icon: Image.asset('assets/icons/un-scanner.png',height: 20,),
+              items: [
+                BottomNavigationBarItem(
+
+                    activeIcon: Padding(
+                      padding:  EdgeInsets.all(8.0.w),
+                      child: Image.asset(
+                        'assets/icons/scanner selected.png',
+                        height: 64.h,
+                      ),
+                    ),
+                    icon: Padding(
+                      padding:  const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 26.r,
+                        backgroundColor: const Color(0xFF4D4D4D),
+                        child: CircleAvatar(
+                            radius: 25.r,
+                            backgroundColor: const Color(0xff282828),
+                            child: Image.asset(
+                              'assets/icons/un-scanner.png',
+                              height: 22.h,
+                            )),
+                      ),
+                    ),
                     label: "Scan"),
                 BottomNavigationBarItem(
-                  activeIcon: CircleAvatar(
-                      radius: 33,
-                      backgroundColor: Color(0xff282828),
-                      child: Image.asset('assets/icons/logo.png',height: 40,)) ,
-                    icon: selectedIndex1== 1
-                    ? CircleAvatar(
-                        radius: 33,
-                        backgroundColor: Color(0xff282828),
-                        child: Image.asset('assets/icons/logo.png',height: 40,))
-                    : CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Color(0xff282828),
-                        child: Image.asset('assets/icons/logo.png',height: 30,)),
+                    activeIcon: Padding(
+                      padding:  EdgeInsets.all(8.0.w),
+                      child: Image.asset(
+                        'assets/icons/GymFit ClubSelected.png',
+                        height: 64.h,
+                      ),
+                    ),
+                    icon: Padding(
+                      padding:  EdgeInsets.all(8.0.w),
+                      child: CircleAvatar(
+                        radius: 26.r,
+                        backgroundColor: Color(0xFF4D4D4D),
+                        child: CircleAvatar(
+                            radius: 25,
+                            backgroundColor: Color(0xff282828),
+                            child: Image.asset(
+                              'assets/icons/logo.png',
+                              height: 44.h,
+                            )),
+                      ),
+                    ),
                     label: "GymFit Club"),
                 BottomNavigationBarItem(
-                    icon: selectedIndex1== 2
-                        ? Image.asset('assets/icons/messageW.png',height: 30,)
-                        : Image.asset('assets/icons/message.png',height: 25,),
-                    label: "GymFit Club"),
+                    activeIcon: Padding(
+                      padding:  EdgeInsets.all(8.0.w),
+                      child: Image.asset(
+                        'assets/icons/message selected.png',
+                        height: 64.h,
+                      ),
+                    ),
+                    icon: Padding(
+                      padding:  EdgeInsets.all(8.0.w),
+                      child: CircleAvatar(
+                        radius: 26.r,
+                        backgroundColor: Color(0xFF4D4D4D),
+                        child: CircleAvatar(
+                            radius: 25.r,
+                            backgroundColor: Color(0xff282828),
+                            child: Image.asset(
+                              'assets/icons/message.png',
+                              height: 22.h,
+                            )),
+                      ),
+                    ),
+                    label: "Messages"),
               ],
               onTap: (int indexOfItem) {
                 setState(() {
-                  selectedIndex1=indexOfItem;
+                  _selectedIndex = indexOfItem;
                 });
-              })),body: screens[selectedIndex1],
+              })),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: screens,
+      ),
     );
   }
 }

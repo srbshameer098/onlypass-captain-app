@@ -39,6 +39,9 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   qr_bar_code_scanner_dialog: ^0.0.5
   scrollable_reorderable_navbar: ^0.0.2
+  google_fonts:
+  qr_code_scanner: ^1.0.1
+
 
 dev_dependencies:
   flutter_test:
