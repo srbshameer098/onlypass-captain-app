@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,20 +15,20 @@ class ScanPage extends StatefulWidget {
 class _ScanState extends State<ScanPage> {
   Barcode? result;
   QRViewController? controller;
-  bool _flash =false;
+  final TextEditingController _controller = TextEditingController();
 
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
-  // @override
-  // void reassemble() {
-  //   super.reassemble();
-  //   if (Platform.isAndroid) {
-  //     controller!.pauseCamera();
-  //   }
-  //   controller!.resumeCamera();
-  // }
+  @override
+  void reassemble() {
+    super.reassemble();
+    if (Platform.isAndroid) {
+      controller!.pauseCamera();
+    }
+    controller!.resumeCamera();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class _ScanState extends State<ScanPage> {
       backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         title: Padding(
           padding: EdgeInsets.all(8.0.w),
@@ -55,8 +56,13 @@ class _ScanState extends State<ScanPage> {
         ),
         actions: [
           Padding(
-            padding:  EdgeInsets.all(8.0.w),
-            child: Center(child: Image.asset('assets/icons/fi-rr-menu-dots-vertical.png',height: 24.h,width: 26.w,)),
+            padding: EdgeInsets.symmetric(horizontal: 20.h,vertical: 5.w),
+            child: Center(
+                child: Image.asset(
+              'assets/icons/fi-rr-menu-dots-vertical.png',
+              height: 24.h,
+              width: 26.w,
+            )),
           )
         ],
       ),
@@ -65,23 +71,28 @@ class _ScanState extends State<ScanPage> {
           Expanded(
             flex: 4,
             child: Stack(
+              alignment: Alignment.center,
               children: [
                 _buildQrView(context),
                 Positioned(
                   top: 510.h,
-                  left: 191.w,
+                  // left: 191.w,
                   child: GestureDetector(
                     onTap: () async {
                       await controller?.toggleFlash();
-                      setState(() {
-                        _flash = !_flash;
-                      });
+                      setState(() {});
                     },
-                    child: CircleAvatar(
-                      radius: 24.r,
-                      backgroundColor: Color(0xFF303030),
-                      child: Center(
-                        child: Image.asset('assets/icons/image-flash.png',height: 24.h,width: 24.w,)
+                    child: Opacity(
+                      opacity: 0.7,
+                      child: CircleAvatar(
+                        radius: 24.r,
+                        backgroundColor: const Color(0xFF303030),
+                        child: Center(
+                            child: Image.asset(
+                          'assets/icons/image-flash.png',
+                          height: 24.h,
+                          width: 24.w,
+                        )),
                       ),
                     ),
                   ),
@@ -95,7 +106,7 @@ class _ScanState extends State<ScanPage> {
             color: const Color(0xFF282828),
             child: Center(
               child: Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 29.h),
+                padding: EdgeInsets.symmetric(horizontal: 29.h),
                 child: Container(
                   width: 390.31.w,
                   height: 54.81.h,
@@ -105,12 +116,30 @@ class _ScanState extends State<ScanPage> {
                         borderRadius: BorderRadius.circular(2.r)),
                   ),
                   child: Center(
-                    child: TextField(
+                    child: TextFormField(
+
+                      style: GoogleFonts.montserrat(
+                        color: const Color(0xFFE3E3E3),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      controller: _controller,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        suffix: SizedBox(
-                          width: 10.w,
-                        ),
+                        suffixIcon: (_controller.toString().isNotEmpty)
+                            ? IconButton(
+                                icon: Icon(
+                                  Icons.clear,
+                                  color: Color(0xff888888),
+                                  size: 20,
+                                ),
+                                onPressed: () {
+                                  _controller.clear();
+                                },
+                              )
+                            : SizedBox(
+                                width: 10.w,
+                              ),
                         hintText: 'Type Code number',
                         prefix: SizedBox(
                           width: 15.w,
@@ -144,9 +173,9 @@ class _ScanState extends State<ScanPage> {
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
-        overlayColor: const Color.fromRGBO(0, 0, 0, 80),
-          borderColor: Color(0xFF00FF00),
-          borderRadius: 0.5.r,
+          overlayColor: const Color.fromRGBO(0, 0, 0, 80),
+          borderColor: const Color(0xFF00FF00),
+          borderRadius: 0.3.r,
           borderLength: 40.w,
           borderWidth: 5.w,
           cutOutSize: scanArea),

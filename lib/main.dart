@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled7/bottomNavBar.dart';
+import 'package:untitled7/Pages/bottom_app_bar.dart';
+
+import 'bottomNavBar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: BottomNavBar(),
+        home: BottomAppBarPage(),
       ),
     );
   }
