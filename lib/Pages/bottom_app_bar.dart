@@ -6,11 +6,13 @@ import 'package:untitled7/Pages/message_page.dart';
 import 'package:untitled7/Pages/scan_page.dart';
 
 class BottomAppBarPage extends StatefulWidget {
+  const BottomAppBarPage({super.key});
+
   @override
-  _BottomAppBarPageState createState() => _BottomAppBarPageState();
+  BottomAppBarPageState createState() => BottomAppBarPageState();
 }
 
-class _BottomAppBarPageState extends State<BottomAppBarPage> {
+class BottomAppBarPageState extends State<BottomAppBarPage> {
   int _currentIndex = 1;
 
   final List<Widget> _pages = [
@@ -24,10 +26,9 @@ class _BottomAppBarPageState extends State<BottomAppBarPage> {
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomAppBar(
-
         shadowColor: Colors.black,
         surfaceTintColor: Colors.black,
-        height: 126,
+        height: 125.h,
         color: Colors.black,
         elevation: 0,
         child: Row(
@@ -43,38 +44,41 @@ class _BottomAppBarPageState extends State<BottomAppBarPage> {
               hoverColor: Colors.black,
               alignment: Alignment.bottomCenter,
               icon: _currentIndex == 0
-                  ? Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.white,
-                      ),
-                      SizedBox(height: 8,),
-                      Text(
-                        'Scan',
-                        style: GoogleFonts.montserrat(
-                          color: Colors.white,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
+                  ? Padding(
+                padding: EdgeInsets.only(left: 160.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 30.r,
+                          backgroundColor: Colors.white,
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 8.h,),
+                        Text(
+                          'Scan',
+                          style: GoogleFonts.montserrat(
+                            color: Colors.white,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                   : Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
-                    radius: 20,
+                   CircleAvatar(
+                    radius: 20.r,
                   ),
                   SizedBox(height: 8,),
                   Text(
-                    'Scan',
+                    '    Scan    ',
                     style: GoogleFonts.montserrat(
                       color: Color(0xFF818181),
-                      fontSize: 10.sp,
+                      fontSize: 11.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -95,20 +99,20 @@ class _BottomAppBarPageState extends State<BottomAppBarPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CircleAvatar(
-                        radius: 30,
+                        radius: 30.r,
                         backgroundColor: Colors.white,
                         // backgroundImage: AssetImage(  'assets/icons/GymFit ClubSelected.png',),
                         child: CircleAvatar(
                           backgroundColor: Colors.black,
 
-                          radius: 29,
+                          radius: 29.r,
                           child: Image.asset(
                             'assets/icons/logo.png',
                             height: 64.h,
                           ),
                         ),
                       ),
-                      SizedBox(height: 8,),
+                      SizedBox(height: 8.h,),
                       Text(
                         'GymFit Club',
                         style: GoogleFonts.montserrat(
@@ -124,25 +128,25 @@ class _BottomAppBarPageState extends State<BottomAppBarPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          radius: 22,
+                          radius: 22.r,
                           backgroundColor: Colors.grey[800],
                           // backgroundImage: AssetImage(  'assets/icons/GymFit ClubSelected.png',),
                           child: CircleAvatar(
                             backgroundColor: Colors.black,
 
-                            radius: 20,
+                            radius: 20.r,
                             child: Image.asset(
                               'assets/icons/logo.png',
                               height: 44.h,
                             ),
                           ),
                         ),
-                        SizedBox(height: 8,),
+                        SizedBox(height: 8.h,),
                         Text(
                           'GymFit Club',
                           style: GoogleFonts.montserrat(
                             color: Color(0xFF818181),
-                            fontSize: 10.sp,
+                            fontSize: 11.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -159,38 +163,41 @@ class _BottomAppBarPageState extends State<BottomAppBarPage> {
               hoverColor: Colors.black,
               alignment: Alignment.bottomCenter,
               icon: _currentIndex == 2
-                  ? Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.white,
-                        ),
-                        SizedBox(height: 8,),
-                        Text(
-                          'Messages',
-                          style: GoogleFonts.montserrat(
-                            color: Colors.white,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w600,
+                  ? Padding(
+                    padding: EdgeInsets.only(right: 160.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            radius: 30.r,
+                            backgroundColor: Colors.white,
                           ),
-                        ),
-                      ],
-                    )
+                          SizedBox(height: 8.h,),
+                          Text(
+                            'Messages',
+                            style: GoogleFonts.montserrat(
+                              color: Colors.white,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                  )
                   : Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const CircleAvatar(
-                          radius: 20,
+                         CircleAvatar(
+                          radius: 20.r,
                         ),
-                        SizedBox(height: 8,),
+                        SizedBox(height: 8.h,),
                         Text(
                           'Messages',
                           style: GoogleFonts.montserrat(
                             color: Color(0xFF818181),
-                            fontSize: 10.sp,
+                            fontSize: 11.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -205,23 +212,3 @@ class _BottomAppBarPageState extends State<BottomAppBarPage> {
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Home Screen'));
-  }
-}
-
-class FavoritesScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Favorites Screen'));
-  }
-}
-
-class ProfileScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Profile Screen'));
-  }
-}

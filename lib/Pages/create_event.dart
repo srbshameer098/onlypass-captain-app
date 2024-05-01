@@ -12,6 +12,9 @@ class CreateEvent extends StatefulWidget {
   State<CreateEvent> createState() => _CreateEventState();
 }
 
+final eventController =TextEditingController();
+final eventDescriptionController =TextEditingController();
+
 class _CreateEventState extends State<CreateEvent> {
   @override
   Widget build(BuildContext context) {
@@ -213,6 +216,7 @@ class _CreateEventState extends State<CreateEvent> {
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
+                    controller: eventController,
                     decoration: InputDecoration(
                       suffix: SizedBox(
                         width: 10,
@@ -251,29 +255,24 @@ class _CreateEventState extends State<CreateEvent> {
                         borderRadius: BorderRadius.circular(1)),
                   ),
                   child: TextFormField(
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(250),
-                    ],
+                    controller: eventDescriptionController,
+                    inputFormatters: [LengthLimitingTextInputFormatter(250),],
                     maxLines: 4,
                     style: GoogleFonts.montserrat(
                       color: Colors.white,
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
+                      fontWeight: FontWeight.w500,),
+                    maxLength: 250,
                     decoration: InputDecoration(
-                      suffix: SizedBox(
-                        width: 10,
-                      ),
+                      contentPadding: EdgeInsets.all(16),
                       border: InputBorder.none,
-                      hintText: 'Enter what do you want to call this event',
+                      hintText: 'Enter few sentences about this event',
                       hintStyle: GoogleFonts.montserrat(
                         color: Color(0xFF6F6F70),
                         fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      prefix: SizedBox(
-                        width: 16,
-                      ),
+                        fontWeight: FontWeight.w500,),
+                      counterText:  '${eventDescriptionController.text.length}/250',
+                      counterStyle: TextStyle(color: Colors.grey),
                     ),
                   ),
                 )),

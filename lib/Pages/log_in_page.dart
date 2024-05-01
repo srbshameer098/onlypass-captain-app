@@ -102,6 +102,7 @@ class _LogInPageState extends State<LogInPage> {
                             borderRadius: BorderRadius.circular(1.r)),
                       ),
                       child: IntlPhoneField(
+                        cursorColor: Colors.white,
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(10),
                         ],

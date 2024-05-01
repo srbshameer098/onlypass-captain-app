@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Pages/bottom_app_bar.dart';
+
 class Verify extends StatefulWidget {
   const Verify({super.key});
 
@@ -100,34 +102,40 @@ class _VerifyState extends State<Verify> {
                   ),
                   Padding(
                     padding:  EdgeInsets.only(top: 24.h),
-                    child: Container(
-                      width: 376.w,
-                      height: 48.h,
-                      decoration: ShapeDecoration(
-                        color: Colors.red,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(1.r)),
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Continue',
-                              style: GoogleFonts.montserrat(
-                                color: const Color(0xFF191919),
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
+                    child: GestureDetector(
+                      onTap: (){
+
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> const BottomAppBarPage()));
+                      },
+                      child: Container(
+                        width: 376.w,
+                        height: 48.h,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(1.r)),
+                        ),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Verify',
+                                style: GoogleFonts.montserrat(
+                                  color: const Color(0xFF191919),
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 12.w,
-                            ),
-                            const Icon(
-                              Icons.east_rounded,
-                            ),
-                          ],
+                              SizedBox(
+                                width: 12.w,
+                              ),
+                              const Icon(
+                                Icons.east_rounded,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

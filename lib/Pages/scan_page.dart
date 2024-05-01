@@ -36,6 +36,7 @@ class _ScanState extends State<ScanPage> {
       backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Padding(
@@ -117,12 +118,13 @@ class _ScanState extends State<ScanPage> {
                   ),
                   child: Center(
                     child: TextFormField(
-
+                      textInputAction: TextInputAction.search,
                       style: GoogleFonts.montserrat(
                         color: const Color(0xFFE3E3E3),
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
                       ),
+                      cursorColor: Colors.white,
                       controller: _controller,
                       decoration: InputDecoration(
                         border: InputBorder.none,

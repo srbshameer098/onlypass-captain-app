@@ -327,7 +327,7 @@ class _EventConfirmState extends State<EventConfirm> {
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: 180,
                     height: 89,
                     child: Stack(
@@ -339,7 +339,7 @@ class _EventConfirmState extends State<EventConfirm> {
                             'Event category',
                             style: TextStyle(
                               color: Color(0xFFE4E4E4),
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               height: 0,
