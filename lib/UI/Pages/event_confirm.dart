@@ -2,24 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
-import 'package:untitled7/Pages/event_confirm.dart';
 
-class EventLocation extends StatefulWidget {
-  const EventLocation({super.key});
+class EventConfirm extends StatefulWidget {
+  const EventConfirm({super.key});
 
   @override
-  State<EventLocation> createState() => _EventLocationState();
+  State<EventConfirm> createState() => _EventConfirmState();
 }
 
-class _EventLocationState extends State<EventLocation> {
+class _EventConfirmState extends State<EventConfirm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1B1B1B),
+      // backgroundColor: Color(0xFF1B1B1B),
+      backgroundColor: Colors.green,
       appBar: AppBar(
         leading: GestureDetector(
-          onTap: (){
+          onTap: () {
             Navigator.pop(context);
           },
           child: Padding(
@@ -56,38 +55,12 @@ class _EventLocationState extends State<EventLocation> {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Center(
                 child: Image.asset(
-                  'assets/icons/fi-rr-menu-dots-vertical.png',
-                  height: 24.h,
-                  width: 26.w,
-                )),
+              'assets/icons/fi-rr-menu-dots-vertical.png',
+              height: 24.h,
+              width: 26.w,
+            )),
           )
         ],
-      ),
-      floatingActionButton: CircularStepProgressIndicator(
-        totalSteps: 100,
-        currentStep: 100,
-        stepSize: 0,
-        selectedColor: Color(0xFF37F840),
-        unselectedColor: Colors.transparent,
-        padding: 0,
-        width: 85,
-        height: 85,
-        selectedStepSize: 5,
-        roundedCap: (_, __) => false,
-        child: GestureDetector(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (_)=> EventConfirm()));
-          },
-          child: CircleAvatar(
-            backgroundColor: Colors.transparent,
-            radius: 35,
-            child: CircleAvatar(
-              backgroundColor: Color(0xFFFEFEFE),
-              radius: 34,
-              child: Center(child: Icon(Icons.east)),
-            ),
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -330,7 +303,7 @@ class _EventLocationState extends State<EventLocation> {
                                       color: Color(0xFF282828),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                          BorderRadius.circular(1)),
+                                              BorderRadius.circular(1)),
                                     ),
                                   ),
                                 ),
@@ -355,7 +328,7 @@ class _EventLocationState extends State<EventLocation> {
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: 180,
                     height: 89,
                     child: Stack(
@@ -367,7 +340,7 @@ class _EventLocationState extends State<EventLocation> {
                             'Event category',
                             style: TextStyle(
                               color: Color(0xFFE4E4E4),
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               height: 0,
@@ -392,7 +365,7 @@ class _EventLocationState extends State<EventLocation> {
                                       color: Color(0xFF282828),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                          BorderRadius.circular(1)),
+                                              BorderRadius.circular(1)),
                                     ),
                                   ),
                                 ),

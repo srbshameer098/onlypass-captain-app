@@ -3,23 +3,22 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-import 'package:untitled7/Pages/event_time.dart';
 
-class CreateEvent extends StatefulWidget {
-  const CreateEvent({super.key});
+import 'event_confirm.dart';
+
+class EventLocation extends StatefulWidget {
+  const EventLocation({super.key});
 
   @override
-  State<CreateEvent> createState() => _CreateEventState();
+  State<EventLocation> createState() => _EventLocationState();
 }
 
-final eventController =TextEditingController();
-final eventDescriptionController =TextEditingController();
-
-class _CreateEventState extends State<CreateEvent> {
+class _EventLocationState extends State<EventLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1B1B1B),
+      // backgroundColor: Color(0xFF1B1B1B),
+      backgroundColor: Colors.red,
       appBar: AppBar(
         leading: GestureDetector(
           onTap: (){
@@ -59,16 +58,16 @@ class _CreateEventState extends State<CreateEvent> {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Center(
                 child: Image.asset(
-              'assets/icons/fi-rr-menu-dots-vertical.png',
-              height: 24.h,
-              width: 26.w,
-            )),
+                  'assets/icons/fi-rr-menu-dots-vertical.png',
+                  height: 24.h,
+                  width: 26.w,
+                )),
           )
         ],
       ),
       floatingActionButton: CircularStepProgressIndicator(
         totalSteps: 100,
-        currentStep: 35,
+        currentStep: 100,
         stepSize: 0,
         selectedColor: Color(0xFF37F840),
         unselectedColor: Colors.transparent,
@@ -79,7 +78,7 @@ class _CreateEventState extends State<CreateEvent> {
         roundedCap: (_, __) => false,
         child: GestureDetector(
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (_)=> EventTime()));
+            Navigator.push(context, MaterialPageRoute(builder: (_)=> EventConfirm()));
           },
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
@@ -216,7 +215,6 @@ class _CreateEventState extends State<CreateEvent> {
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
-                    controller: eventController,
                     decoration: InputDecoration(
                       suffix: SizedBox(
                         width: 10,
@@ -255,24 +253,29 @@ class _CreateEventState extends State<CreateEvent> {
                         borderRadius: BorderRadius.circular(1)),
                   ),
                   child: TextFormField(
-                    controller: eventDescriptionController,
-                    inputFormatters: [LengthLimitingTextInputFormatter(250),],
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(250),
+                    ],
                     maxLines: 4,
                     style: GoogleFonts.montserrat(
                       color: Colors.white,
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,),
-                    maxLength: 250,
+                      fontWeight: FontWeight.w500,
+                    ),
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(16),
+                      suffix: SizedBox(
+                        width: 10,
+                      ),
                       border: InputBorder.none,
-                      hintText: 'Enter few sentences about this event',
+                      hintText: 'Enter what do you want to call this event',
                       hintStyle: GoogleFonts.montserrat(
                         color: Color(0xFF6F6F70),
                         fontSize: 12,
-                        fontWeight: FontWeight.w500,),
-                      counterText:  '${eventDescriptionController.text.length}/250',
-                      counterStyle: TextStyle(color: Colors.grey),
+                        fontWeight: FontWeight.w500,
+                      ),
+                      prefix: SizedBox(
+                        width: 16,
+                      ),
                     ),
                   ),
                 )),
@@ -329,7 +332,7 @@ class _CreateEventState extends State<CreateEvent> {
                                       color: Color(0xFF282828),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(1)),
+                                          BorderRadius.circular(1)),
                                     ),
                                   ),
                                 ),
@@ -391,7 +394,7 @@ class _CreateEventState extends State<CreateEvent> {
                                       color: Color(0xFF282828),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(1)),
+                                          BorderRadius.circular(1)),
                                     ),
                                   ),
                                 ),

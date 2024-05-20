@@ -1,11 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled7/Pages/create_event.dart';
+import 'package:untitled7/Bloc/Event_Creation/event_bloc.dart';
+import 'package:untitled7/UI/Pages/wallet.dart';
 
-import '../components/facility_item.dart';
+import '../../components/facility_item.dart';
+import 'create_event.dart';
+import 'members.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -34,6 +38,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: const Color(0xFF191919),
       appBar: AppBar(
+        toolbarHeight: 75.h,
         automaticallyImplyLeading: false,
         title: Row(
           children: [
@@ -100,7 +105,7 @@ class _HomeState extends State<Home> {
             ],
           )
         ],
-        centerTitle: false,
+        centerTitle: true,
         backgroundColor: Colors.black,
       ),
       body: SafeArea(
@@ -211,7 +216,7 @@ class _HomeState extends State<Home> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(1.r))),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.0.h),
+                          padding: EdgeInsets.symmetric(horizontal: 20.0.h),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -221,8 +226,8 @@ class _HomeState extends State<Home> {
                                 height: 40.h,
                                 decoration: ShapeDecoration(
                                   image: const DecorationImage(
-                                    image: AssetImage(
-                                        "assets/images/imgLog.png"),
+                                    image:
+                                        AssetImage("assets/images/imgLog.png"),
                                     fit: BoxFit.fill,
                                   ),
                                   shape: OvalBorder(
@@ -297,7 +302,7 @@ class _HomeState extends State<Home> {
                       enlargeCenterPage: false,
                       clipBehavior: Clip.none,
                       enableInfiniteScroll: false,
-                      aspectRatio: 376 / 64,
+                      aspectRatio: 400 / 64,
                       height: 88.h,
                     ),
                   ),
@@ -526,8 +531,20 @@ class _HomeState extends State<Home> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         FacilityItem(icon: icons[0], text: texts[0]),
-                        FacilityItem(icon: icons[1], text: texts[1]),
-                        FacilityItem(icon: icons[2], text: texts[2]),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => const Members()));
+                            },
+                            child:
+                        FacilityItem(icon: icons[1], text: texts[1])),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => const Wallet()));
+                            },
+                            child:
+                                FacilityItem(icon: icons[2], text: texts[2])),
                         FacilityItem(icon: icons[3], text: texts[3]),
                       ],
                     ),
@@ -652,14 +669,27 @@ class _HomeState extends State<Home> {
                     padding:
                         EdgeInsets.symmetric(vertical: 8.h, horizontal: 16),
                     child: SizedBox(
-                      height: 263.h,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 3,
-                        itemBuilder: (context, position) {
-                          return GestureDetector(
-                              onTap: () {},
-                              child: Column(
+                      height: 270.h,
+                      child: BlocBuilder<EventBloc, EventState>(
+                        builder: (context, state) {
+                          if (state is EventBloCLoading){
+                            return const Center(child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),);
+                          }
+                          if( state is EventBloCError){
+                            return Center(
+                              child: Text('something else !!'),
+                            );
+                          }
+                          if (state is EventBLoCLoaded){
+                            // data = BlocProvider.of.<EventBloc>(context).eventModel;
+                          }
+                          return ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 3,
+                            itemBuilder: (context, position) {
+                              return Column(
                                 children: [
                                   Stack(
                                     children: [
@@ -668,12 +698,14 @@ class _HomeState extends State<Home> {
                                         height: 194.h,
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
-                                            image: AssetImage(
-                                                "assets/images/img1.png",),fit: BoxFit.cover
-                                          ),
+                                              image: AssetImage(
+                                                "assets/images/img1.png",
+                                              ),
+                                              fit: BoxFit.cover),
                                         ),
                                       ),
                                       Positioned(
+
                                           top: 163.h,
                                           child: Container(
                                             width: 152.w,
@@ -684,8 +716,8 @@ class _HomeState extends State<Home> {
                                                 end: Alignment(0, -1),
                                                 colors: [
                                                   Color(0x91191919),
-                                                  Colors.black.withOpacity(
-                                                      0.35),
+                                                  Colors.black
+                                                      .withOpacity(0.35),
                                                   Color(0x00191919)
                                                 ],
                                               ),
@@ -737,7 +769,9 @@ class _HomeState extends State<Home> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 8,),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
                                   Padding(
                                     padding:
                                         EdgeInsets.symmetric(vertical: 4.w),
@@ -765,17 +799,19 @@ class _HomeState extends State<Home> {
                                           color: const Color(0xFF818181),
                                           fontSize: 10.sp,
                                           fontWeight: FontWeight.w400,
-                                          height: 0.21.h,
                                         ),
                                       ),
                                     ),
                                   )
                                 ],
-                              ));
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            width: 23.w,
+                              );
+                            },
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return SizedBox(
+                                width: 23.w,
+                              );
+                            },
                           );
                         },
                       ),

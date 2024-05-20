@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled7/Pages/message_page.dart';
-import 'package:untitled7/Pages/scan_page.dart';
-
 import 'Pages/home.dart';
+import 'Pages/message_page.dart';
+import 'Pages/scan_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
