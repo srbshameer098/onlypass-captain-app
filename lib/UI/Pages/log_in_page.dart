@@ -20,7 +20,7 @@ class LogInPage extends StatefulWidget {
 class _LogInPageState extends State<LogInPage> {
   bool loading = false;
 
-  final auth = FirebaseAuth.instance;
+  // final auth = FirebaseAuth.instance;
 
   final PhoneNumberController = TextEditingController();
 
@@ -291,36 +291,36 @@ class _LogInPageState extends State<LogInPage> {
                             loading = true;
                           });
 
-                          auth.verifyPhoneNumber(
-                              phoneNumber: '+91${PhoneNumberController.text}',
-                              verificationCompleted: (_) {
-                                setState(() {
-                                  loading = false;
-                                });
-                              },
-                              verificationFailed: (e) {
-                                setState(() {
-                                  loading = false;
-                                });
-                                Utils().toastMessage(e.toString());
-                              },
-                              codeSent: (String verificationId, int? token) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Verify(
-                                              verificationId: verificationId,
-                                            )));
-                                setState(() {
-                                  loading = false;
-                                });
-                              },
-                              codeAutoRetrievalTimeout: (e) {
-                                Utils().toastMessage(e.toString());
-                                setState(() {
-                                  loading = false;
-                                });
-                              });
+                          // auth.verifyPhoneNumber(
+                          //     phoneNumber: '+91${PhoneNumberController.text}',
+                          //     verificationCompleted: (_) {
+                          //       setState(() {
+                          //         loading = false;
+                          //       });
+                          //     },
+                          //     verificationFailed: (e) {
+                          //       setState(() {
+                          //         loading = false;
+                          //       });
+                          //       Utils().toastMessage(e.toString());
+                          //     },
+                          //     codeSent: (String verificationId, int? token) {
+                          //       Navigator.push(
+                          //           context,
+                          //           MaterialPageRoute(
+                          //               builder: (context) => Verify(
+                          //                     verificationId: verificationId,
+                          //                   )));
+                          //       setState(() {
+                          //         loading = false;
+                          //       });
+                          //     },
+                          //     codeAutoRetrievalTimeout: (e) {
+                          //       Utils().toastMessage(e.toString());
+                          //       setState(() {
+                          //         loading = false;
+                          //       });
+                          //     });
                         },
                         child: Container(
                           width: 378.w,

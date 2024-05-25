@@ -6,12 +6,12 @@ import '../Model_Class/Login_model.dart';
 import 'api_client.dart';
 
 
-class LoginApi {
+class LogInApi {
   ApiClient apiClient = ApiClient();
 
 
   Future<LogInModel> getLogin(String phoneNumber) async {
-    String trendingpath = 'http://178.18.254.224:8654/api/captian-app/for-login';
+    String trendingpath = 'http://178.18.254.224:8654/api/customer/login';
     var body = {
       "phoneNumber":phoneNumber
     };

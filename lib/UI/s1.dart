@@ -21,17 +21,17 @@ final List<Widget?> _pages = [
   const Home(),
   const MessagePage()
 ];
-List<String> iconsActive = [
-  'assets/icons/scan.png',
+List<String> icons = [
+  'assets/icons/scanCircle.png',
   'assets/icons/logo.png',
-  'assets/icons/messageW.png',
+  'assets/icons/messageCircle.png',
 ];
 
-List<String> iconsInactive = [
-  'assets/icons/un-scanner.png',
-  'assets/icons/logo.png',
-  'assets/icons/message.png',
-];
+// List<String> iconsInactive = [
+//   'assets/icons/un-scanner.png',
+//   'assets/icons/logo.png',
+//   'assets/icons/message.png',
+// ];
 
 List<String> texts = [
   'Scan',
@@ -57,7 +57,7 @@ class _S1State extends State<S1> {
           itemBuilder:
               (BuildContext context, int itemIndex, int pageViewIndex) =>
                   Center(
-                    child: GestureDetector(
+            child: GestureDetector(
               onTap: () {
                 setState(() => _currentIndex = itemIndex);
                 _controller.jumpToPage(itemIndex);
@@ -75,28 +75,29 @@ class _S1State extends State<S1> {
                       radius: _currentIndex == itemIndex ? 29.r : 25.r,
                       backgroundColor: const Color(0xFF282828),
                       child: CircleAvatar(
-                          radius: _currentIndex == itemIndex ? 26.r : 20.r,
-                          backgroundColor: const Color(0xFF282828),
-                          // backgroundImage: _currentIndex == itemIndex
-                          //     ? AssetImage(icons[itemIndex])
-                          //     : AssetImage(icons[itemIndex]),
-                          child: _currentIndex == itemIndex
-                              ? SizedBox(
-                                  height: 28.h,
-                                  width: 28.h,
-                                  child: Image.asset(
-                                    iconsActive[itemIndex],
-                                    fit: BoxFit.cover,
-                                  ),
-                                )
-                              : SizedBox(
-                                  height: 20.h,
-                                  width: 20.h,
-                                  child: Image.asset(
-                                    iconsInactive[itemIndex],
-                                    fit: BoxFit.cover,
-                                  ),
-                                )),
+                        radius: _currentIndex == itemIndex ? 27.r : 22.r,
+                        backgroundColor: const Color(0xFF282828),
+                        backgroundImage: _currentIndex == itemIndex
+                            ? AssetImage(icons[itemIndex])
+                            : AssetImage(icons[itemIndex]),
+                        // child: _currentIndex == itemIndex
+                        //     ? SizedBox(
+                        //         height: 28.h,
+                        //         width: 28.h,
+                        //         child: Image.asset(
+                        //           icons[itemIndex],
+                        //           fit: BoxFit.cover,
+                        //         ),
+                        //       )
+                        //     : SizedBox(
+                        //         height: 23.h,
+                        //         width: 23.h,
+                        //         child: Image.asset(
+                        //           icons[itemIndex],
+                        //           fit: BoxFit.cover,
+                        //         ),
+                        //       ),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -106,8 +107,12 @@ class _S1State extends State<S1> {
                     texts[itemIndex],
                     style: GoogleFonts.montserrat(
                       color: _currentIndex == itemIndex
-                          ? Colors.white : const Color(0xFF818181), fontSize: _currentIndex == itemIndex
-                          ? 12.sp : 11.sp, fontWeight: _currentIndex == itemIndex ? FontWeight.w600 : FontWeight.w500,
+                          ? Colors.white
+                          : const Color(0xFF818181),
+                      fontSize: _currentIndex == itemIndex ? 12.sp : 11.sp,
+                      fontWeight: _currentIndex == itemIndex
+                          ? FontWeight.w600
+                          : FontWeight.w500,
                     ),
                   ),
                 ],

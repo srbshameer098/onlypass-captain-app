@@ -22,7 +22,7 @@ class _EventConfirmState extends State<EventConfirm> {
             Navigator.pop(context);
           },
           child: Padding(
-            padding: const EdgeInsets.only(left: 25, top: 10, bottom: 10),
+            padding:  EdgeInsets.only(left: 25.w, top: 10.h, bottom: 10.h),
             child: Container(
               width: 37.59.w,
               height: 37.59.h,
@@ -46,13 +46,13 @@ class _EventConfirmState extends State<EventConfirm> {
           'Create an event or class',
           style: GoogleFonts.montserrat(
             color: Colors.white,
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
             child: Center(
                 child: Image.asset(
               'assets/icons/fi-rr-menu-dots-vertical.png',
@@ -67,24 +67,24 @@ class _EventConfirmState extends State<EventConfirm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
               child: Text(
                 'Select type ',
                 style: GoogleFonts.montserrat(
                   color: Color(0xFFE4E4E4),
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 29, vertical: 12),
+              padding:  EdgeInsets.symmetric(horizontal: 29.w, vertical: 12.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 180,
-                    height: 48,
+                    width: 180.w,
+                    height: 48.h,
                     decoration: ShapeDecoration(
                       color: Color(0xFFFEFEFE),
                       shape: RoundedRectangleBorder(
@@ -95,23 +95,23 @@ class _EventConfirmState extends State<EventConfirm> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          width: 12,
-                          height: 12,
+                          width: 12.w,
+                          height: 12.h,
                           decoration: ShapeDecoration(
                             shape: OvalBorder(
                               side: BorderSide(
-                                  width: 3, color: Color(0xFF00FF00)),
+                                  width: 3.w, color: Color(0xFF00FF00)),
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 8.w,
                         ),
                         Text(
                           'Create an event',
                           style: GoogleFonts.montserrat(
                             color: Color(0xFF191919),
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w500,
                             height: 0,
                           ),
@@ -120,35 +120,35 @@ class _EventConfirmState extends State<EventConfirm> {
                     ),
                   ),
                   Container(
-                    width: 180,
-                    height: 48,
+                    width: 180.w,
+                    height: 48.h,
                     decoration: ShapeDecoration(
                       color: Color(0xFF282828),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(1)),
+                          borderRadius: BorderRadius.circular(1.r)),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          width: 12,
-                          height: 12,
+                          width: 12.w,
+                          height: 12.h,
                           decoration: ShapeDecoration(
                             shape: OvalBorder(
                               side: BorderSide(
-                                  width: 1, color: Color(0xFFFEFEFE)),
+                                  width: 1.r, color: Color(0xFFFEFEFE)),
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 8.w,
                         ),
                         Text(
                           'Create an event',
                           style: GoogleFonts.montserrat(
                             color: Color(0xFF6F6F70),
-                            fontSize: 12,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w500,
                             height: 0,
                           ),

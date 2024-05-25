@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:untitled7/components/Bottomsheet1.dart';
 
 import '../../components/bottomsheet.dart';
 
@@ -25,7 +26,22 @@ class _ScanState extends State<ScanPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
-      appBar: _buildAppBar(),
+      // appBar: _buildAppBar(),
+      bottomNavigationBar: Container(
+        width: double.infinity,
+        height: 1.h,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(1.00, 0.00),
+            end: Alignment(-1, 0),
+            colors: [
+              Color(0x00191919),
+              Color(0xFF737373),
+              Color(0x00191919)
+            ],
+          ),
+        ),
+      ),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -138,6 +154,14 @@ class _ScanState extends State<ScanPage> {
           isScrollControlled: true,
           builder: (BuildContext context) {
             return BottomSheetDetails();
+          },
+        );
+        await showModalBottomSheet(
+          context: context,
+          isDismissible: true,
+          isScrollControlled: true,
+          builder: (BuildContext context) {
+            return BottomSheetDetails1();
           },
         );
       } finally {

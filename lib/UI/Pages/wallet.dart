@@ -1,8 +1,11 @@
 // wallet.dart
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+
+import 'members.dart';
 
 // app_colors.dart
 class AppColors {
@@ -21,45 +24,171 @@ class Wallet extends StatefulWidget {
 }
 
 class _WalletState extends State<Wallet> {
-  final NumberFormat _formatter = NumberFormat('#,##,000');
+  final NumberFormat _formatter = NumberFormat('#,##,000.00');
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        leading: _buildBackButton(),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
         backgroundColor: AppColors.background,
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'Wallet',
-          style: GoogleFonts.montserrat(
-            color: Colors.white,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
+        appBar: AppBar(
+          leading: _buildBackButton(),
+          backgroundColor: AppColors.background,
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            'Wallet',
+            style: GoogleFonts.montserrat(
+              color: Colors.white,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+            ),
           ),
+          actions: [_buildMenuButton()],
         ),
-        actions: [_buildMenuButton()],
-      ),
-      body: Column(
-        children: [
-          _buildBody(),
-          Expanded(
-            child: Center(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildBody(),
+            SizedBox(
+              height: 40.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 25.w,
+              ),
               child: Text(
-                "No more data available",
-                textAlign: TextAlign.center,
+                'History',
                 style: GoogleFonts.montserrat(
                   color: Color(0xFF818181),
                   fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
+                  height: 0,
                 ),
               ),
             ),
-          )
-        ],
+
+            ///-----------Tab Bar  -------------------///
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25.w,vertical: 24.h),
+              child: ButtonsTabBar(
+                buttonMargin: EdgeInsets.only(right: 32),
+                splashColor: Colors.white,
+                height: 30.h,
+                elevation: 0,
+                contentPadding:
+                EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.w),
+                radius: 0,
+                borderWidth: 0.9,
+                borderColor: Color(0xFF282828),
+                unselectedBorderColor: Color(0xFF4D4D4D),
+                backgroundColor: Colors.white,
+                unselectedBackgroundColor: Colors.transparent,
+                labelStyle: GoogleFonts.montserrat(
+                    color: Color(0xFF191919),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    height: 0),
+                unselectedLabelStyle: GoogleFonts.montserrat(
+                    color: Color(0xFF818181),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    height: 0),
+                tabs: [
+                  Tab(
+                    height: 30.h,
+                    text: 'All',
+                  ),
+                  Tab(
+                    height: 30.h,
+                    text: 'Onlypass',
+                  ),
+                  Tab(
+                    height: 30.h,
+                    text: 'Offline',
+                  ),
+                ],
+              ),
+            ),
+
+            Expanded(
+              child: TabBarView(children: [
+                Container(
+                  height: 100.h * members.length,
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: ListView.separated(
+                    itemCount: members.length,
+                    itemBuilder: (context, index) {
+                      final messages = members[index];
+                      return ListTile(
+                        leading: Container(
+                          width: 44.w,
+                          height: 44.h,
+                          decoration: ShapeDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/icons/account.png"),
+                              fit: BoxFit.fill,
+                            ),
+                            shape: OvalBorder(),
+                          ),
+                        ),
+                        title: Text(messages['member']!,
+                            style: TextStyle(color: Colors.white)),
+                        subtitle: Text('${messages['Description']!} ${messages['amount']!}'),
+                        trailing: Text(
+                          messages['amount']!,
+                          style: TextStyle(
+                            color: messages['status'] == 'Due'
+                                ? Color(0xffFF4D4D)
+                                : messages['status'] == 'Expiring'
+                                ? Color(0xffF1BE0A)
+                                : Color(0xff00FF00),
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) => Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      height: 20.h,
+                      child: Divider(color: Color(0xFF282828),),
+                    ),
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Center(
+                    child: Text(
+                      "No more data available",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.montserrat(
+                        color: Color(0xFF818181),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Center(
+                    child: Text(
+                      "No more data available",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.montserrat(
+                        color: Color(0xFF818181),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ]),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -182,34 +311,45 @@ class _WalletState extends State<Wallet> {
   Widget _buildBalanceRow() {
     return Padding(
       padding: EdgeInsets.only(left: 20.w),
-      child: Row(
-        children: [
-          Text(
-            '₹ ',
-            style: TextStyle(
-              fontStyle: FontStyle.italic,
-              color: AppColors.balanceColor,
-              fontSize: 40.sp,
-              fontWeight: FontWeight.w400,
+      child: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: '₹ ',
+              style: TextStyle(
+                color: AppColors.balanceColor,
+                fontSize: 40.sp,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
-          Text(
-            _formatter.format(5000),
-            style: GoogleFonts.montserrat(
-              color: AppColors.balanceColor,
-              fontSize: 40.sp,
-              fontWeight: FontWeight.w600,
-              letterSpacing: -0.32,
+            TextSpan(
+              text: _formatter.format(5350.35).split('.')[0],
+              style: GoogleFonts.montserrat(
+                color: AppColors.balanceColor,
+                fontSize: 40.sp,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.32,
+              ),
             ),
-          ),
-        ],
+            TextSpan(
+              text: '.${_formatter.format(5350.35).split('.')[1]}',
+              style: GoogleFonts.montserrat(
+                color: AppColors.balanceColor,
+                fontSize: 24.sp,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.32,
+                // baselineOffset: BaselineOffset.subscript,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildTransferButton() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 28.w),
+      padding: EdgeInsets.symmetric(horizontal: 28.w,vertical: 12),
       width: double.infinity,
       height: 52.h,
       decoration: BoxDecoration(
@@ -247,7 +387,7 @@ class _WalletState extends State<Wallet> {
           width: 4.w,
         ),
         Text(
-          _formatter.format(5000),
+          _formatter.format(5000.00),
           textAlign: TextAlign.center,
           style: GoogleFonts.montserrat(
             color: Colors.white,
@@ -262,14 +402,13 @@ class _WalletState extends State<Wallet> {
   }
   Widget _buildTransferButtonContent() {
     return Container(
-      width: 90,
-      height: 32,
-      padding: const EdgeInsets.only(top: 5, left: 16, right: 16, bottom: 6),
+      height: 32.h,
+      padding:  EdgeInsets.symmetric(horizontal: 12.w,vertical: 6.h),
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            width: 0.30,
+            width: 0.30.w,
             strokeAlign: BorderSide.strokeAlignCenter,
             color: Color(0x7FFEFEFF),
           ),
@@ -290,13 +429,13 @@ class _WalletState extends State<Wallet> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Transfer',
+            'Transfer now',
             textAlign: TextAlign.center,
             style: GoogleFonts.montserrat(
               color: Color(0xFF191919),
-              fontSize: 14,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w500,
-              height: 0.11,
+              height: 0.11.h,
               letterSpacing: -0.32,
             ),
           ),
@@ -305,3 +444,63 @@ class _WalletState extends State<Wallet> {
     );
   }
 }
+// final members = [
+//   {
+//     'member': 'Divya Mohanan',
+//     'Description': 'Access granted for Onlypass member',
+//     'amount': '750',
+//     'status': 'Due',
+//     'date': '24/05/24',
+//   },
+//   {
+//     'member': 'Sharon Varghese',
+//     'Description': 'Access granted for Onlypass member',
+//     'amount': '4000.50',
+//     'status': 'Expiring',
+//     'date': '20/05/24',
+//   },
+//   {
+//     'member': 'Akhilesh Chandran',
+//     'Description': 'Access granted for Onlypass member',
+//     'amount': '750.00',
+//     'status': 'Due',
+//     'date': '15/05/24',
+//   },
+//   {
+//     'member': 'GymFit Club',
+//     'Description': 'Access granted for Onlypass member',
+//     'amount': '7000.00',
+//     'status': 'Due',
+//     'date': '10/05/24',
+//   },
+//   {
+//     'member': 'Divya Mohanan',
+//     'Description': 'Access granted for Onlypass member',
+//     'amount': '600.26',
+//     'status': 'Due',
+//     'date': '24/05/24',
+//   },
+//   {
+//     'member': 'Sharon Varghese',
+//     'Description': 'Access granted for Onlypass member',
+//     'amount': '7000',
+//     'status': 'Expiring',
+//     'date': '20/05/24',
+//   },
+//   {
+//     'member': 'Akhilesh Chandran',
+//     'Description': 'Access granted for Onlypass member',
+//     'amount': '750.00',
+//     'status': 'Due',
+//     'date': '15/05/24',
+//   },
+//   {
+//     'member': 'GymFit Club',
+//     'Description': 'Access granted for Onlypass member',
+//     'amount': '7000.00',
+//     'status': 'Due',
+//     'date': '10/05/24',
+//   },
+//
+//   // Add the rest of the transactions here...
+// ];

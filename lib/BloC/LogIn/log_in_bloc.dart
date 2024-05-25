@@ -8,7 +8,7 @@ part 'log_in_event.dart';
 part 'log_in_state.dart';
 
 class LogInBloc extends Bloc<LogInEvent, LogInState> {
-  LoginApi loginApi =LoginApi();
+  LogInApi loginApi =LogInApi();
   late LogInModel logInModel;
   LogInBloc() : super(LogInInitial()) {
     on<FetchLogin>((event, emit) async {

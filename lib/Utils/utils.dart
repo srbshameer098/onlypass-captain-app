@@ -14,7 +14,7 @@ class Utils {
         gravity: ToastGravity.SNACKBAR,
         timeInSecForIosWeb: 1,
         backgroundColor: Color(0xff888888),
-        textColor: Color(0xff000000),
+        textColor: Color(0xffffdbdb),
         fontSize: 16.0
     );
   }
