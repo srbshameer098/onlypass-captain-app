@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled7/components/Bottomsheet1.dart';
+import 'package:untitled7/components/profile.dart';
 class BottomSheetDetails extends StatefulWidget {
   const BottomSheetDetails({super.key});
 
@@ -43,7 +44,7 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
               height: 96.h,
               decoration: ShapeDecoration(
                 image: DecorationImage(
-                  image: NetworkImage("https://via.placeholder.com/96x96"),
+                  image: AssetImage('assets/icons/logo.png'),
                   fit: BoxFit.fill,
                 ),
                 shape: OvalBorder(),
@@ -60,20 +61,29 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                 ),
               ),
             ),
-            Container(
-              width: 95.w,
-              height: 24.h,
-              decoration: ShapeDecoration(
-                color: Color(0xFF282828),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1.r)),
-              ),
-              child: Center(
-                child: Text(
-                  'View profile',
-                  style: GoogleFonts.montserrat(
-                    color: Color(0xFFA3A3A3),
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
+            GestureDetector(
+              onTap: (){
+
+                showModalBottomSheet(isScrollControlled: true,context: context, builder:(BuildContext){
+                  return ProfileBottomSheet();
+                });
+
+              },
+              child: Container(
+                width: 95.w,
+                height: 24.h,
+                decoration: ShapeDecoration(
+                  color: Color(0xFF282828),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1.r)),
+                ),
+                child: Center(
+                  child: Text(
+                    'View profile',
+                    style: GoogleFonts.montserrat(
+                      color: Color(0xFFA3A3A3),
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),

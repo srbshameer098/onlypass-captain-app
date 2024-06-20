@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled7/components/profile.dart';
 class BottomSheetDetails1 extends StatefulWidget {
   const BottomSheetDetails1({super.key});
 
@@ -41,7 +42,7 @@ class _BottomSheetDetails1State extends State<BottomSheetDetails1> {
             height: 96.h,
             decoration: ShapeDecoration(
               image: DecorationImage(
-                image: NetworkImage("https://via.placeholder.com/96x96"),
+                image: AssetImage('assets/icons/logo.png'),
                 fit: BoxFit.fill,
               ),
               shape: OvalBorder(),
@@ -58,20 +59,29 @@ class _BottomSheetDetails1State extends State<BottomSheetDetails1> {
               ),
             ),
           ),
-          Container(
-            width: 95.w,
-            height: 24.h,
-            decoration: ShapeDecoration(
-              color: Color(0xFF282828),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1.r)),
-            ),
-            child: Center(
-              child: Text(
-                'View profile',
-                style: GoogleFonts.montserrat(
-                  color: Color(0xFFA3A3A3),
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w600,
+          GestureDetector(
+            onTap: (){
+
+              showModalBottomSheet(isScrollControlled: true,context: context, builder:(BuildContext){
+                return ProfileBottomSheet();
+              });
+
+            },
+            child: Container(
+              width: 95.w,
+              height: 24.h,
+              decoration: ShapeDecoration(
+                color: Color(0xFF282828),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1.r)),
+              ),
+              child: Center(
+                child: Text(
+                  'View profile',
+                  style: GoogleFonts.montserrat(
+                    color: Color(0xFFA3A3A3),
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
@@ -211,7 +221,26 @@ class _BottomSheetDetails1State extends State<BottomSheetDetails1> {
               SizedBox(width: 24.w,),
               GestureDetector(
                 onTap: (){
-                  Navigator.pop(context);
+
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+
+                        title: Text('Alert Dialog Title'),
+                        content: Text('This is the content of the alert dialog.'),
+                        actions: <Widget>[
+                          TextButton(
+                            child: Text('OK'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                  // Navigator.pop(context);
                   AlertDialog(
                     title: const Text('AlertDialog Title'),
                     content: const SingleChildScrollView(

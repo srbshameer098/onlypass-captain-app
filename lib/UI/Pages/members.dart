@@ -54,9 +54,44 @@ class Members extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 40.h,
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 25.w,vertical: 40.h),
+              child: Container(
+                width: double.infinity,
+                height: 48,
+                padding: EdgeInsets.all(2),
+                decoration: ShapeDecoration(
+                  color: Color(0xFF282828),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(1)),
+                ),
+                child: TextField(
+                  keyboardType: TextInputType.text,
+                  textInputAction:TextInputAction.search,
+                  cursorColor: Colors.white,
+                  style: GoogleFonts.montserrat(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Search',
+                      hintStyle: GoogleFonts.montserrat(
+                        color: Color(0xFF6F6F70),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        height: 0.08,
+                        letterSpacing: -0.32,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                        size: 28,
+                      )),
+                ),
+              ),
             ),
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w),
               child: Row(

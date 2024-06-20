@@ -38,52 +38,52 @@ class _CreateEventState extends State<CreateEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF1B1B1B),
-      // appBar: AppBar(
-      //   leading: GestureDetector(
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: Padding(
-      //       padding: EdgeInsets.only(left: 25.w, top: 10.h, bottom: 10.h),
-      //       child: Container(
-      //         width: 37.59.w,
-      //         height: 37.59.h,
-      //         decoration: ShapeDecoration(
-      //           color: const Color(0xFF282828),
-      //           shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(2.r)),
-      //         ),
-      //         child: Icon(
-      //           Icons.arrow_back_ios_new_rounded,
-      //           color: Colors.white,
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      //   backgroundColor: Color(0xFF1B1B1B),
-      //   automaticallyImplyLeading: false,
-      //   elevation: 0,
-      //   centerTitle: true,
-      //   title: Text(
-      //     'Create an event or class',
-      //     style: GoogleFonts.montserrat(
-      //       color: Colors.white,
-      //       fontSize: 16.sp,
-      //       fontWeight: FontWeight.w600,
-      //     ),
-      //   ),
-      //   actions: [
-      //     Padding(
-      //       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-      //       child: Center(
-      //           child: Image.asset(
-      //         'assets/icons/fi-rr-menu-dots-vertical.png',
-      //         height: 24.h,
-      //         width: 26.w,
-      //       )),
-      //     )
-      //   ],
-      // ),
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Padding(
+            padding: EdgeInsets.only(left: 25.w, top: 10.h, bottom: 10.h),
+            child: Container(
+              width: 37.59.w,
+              height: 37.59.h,
+              decoration: ShapeDecoration(
+                color: const Color(0xFF282828),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2.r)),
+              ),
+              child: Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+        backgroundColor: Color(0xFF1B1B1B),
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'Create an event or class',
+          style: GoogleFonts.montserrat(
+            color: Colors.white,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+            child: Center(
+                child: Image.asset(
+              'assets/icons/fi-rr-menu-dots-vertical.png',
+              height: 24.h,
+              width: 26.w,
+            )),
+          )
+        ],
+      ),
       // floatingActionButton: CircularStepProgressIndicator(
       //   totalSteps: 100,
       //   currentStep: 35,
@@ -110,6 +110,7 @@ class _CreateEventState extends State<CreateEvent> {
       //     ),
       //   ),
       // ),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,26 +131,40 @@ class _CreateEventState extends State<CreateEvent> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomRadioButton(
-                    text: "Create an event",
-                    isSelected: _isSelected1,
-                    onSelect: (text) {
-                      setState(() {
-                        _isSelected1 = true;
-                        _isSelected2 = false;
-                      });
-                    },
+                  Expanded(
+                    child: CustomRadioButton(
+                      text: "Create an event",
+                      isSelected: _isSelected1,
+                      onSelect: (text) {
+                        setState(() {
+                          _isSelected1 = true;
+                          _isSelected2 = false;
+                        });
+                      },
+                      fontStyle: GoogleFonts.montserrat(
+                        fontSize: 14.sp,
+                        color:
+                            _isSelected1 == true ? Colors.black : Colors.grey,
+                      ), description: '',
+                    ),
                   ),
-                  const SizedBox(width: 10.0),
-                  CustomRadioButton(
-                    text: "Create a class",
-                    isSelected: _isSelected2,
-                    onSelect: (text) {
-                      setState(() {
-                        _isSelected1 = false;
-                        _isSelected2 = true;
-                      });
-                    },
+                  const SizedBox(width: 16.0),
+                  Expanded(
+                    child: CustomRadioButton(
+                      text: "Create a class",
+                      isSelected: _isSelected2,
+                      onSelect: (text) {
+                        setState(() {
+                          _isSelected1 = false;
+                          _isSelected2 = true;
+                        });
+                      },
+                      fontStyle: GoogleFonts.montserrat(
+                        fontSize: 14.sp,
+                        color:
+                            _isSelected2 == true ? Colors.black : Colors.grey,
+                      ), description: '',
+                    ),
                   ),
                 ],
               ),

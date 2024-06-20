@@ -1,21 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled7/Bloc/Event_Creation/event_bloc.dart';
 import 'package:untitled7/Bloc/LogIn/log_in_bloc.dart';
+import 'package:untitled7/UI/Pages/log_in_page.dart';
+import 'package:untitled7/UI/Register/verify.dart';
 import 'package:untitled7/UI/s1.dart';
 
-import 'UI/Register/auth.dart';
+import 'firebase_options.dart';
 
-// final navigatorKey = GlobalKey<NavigatorState>();
+final navigatorKey = GlobalKey<NavigatorState>();
 
-void main()
-// async
-{
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -32,7 +33,6 @@ class MyApp extends StatelessWidget {
       child: Builder(builder: (context) {
         return MultiBlocProvider(
           providers: [
-
             BlocProvider(create: (context) => LogInBloc()),
             BlocProvider(create: (context) => EventBloc()),
           ],

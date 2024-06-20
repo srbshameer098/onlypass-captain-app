@@ -6,12 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled7/Bloc/Event_Creation/event_bloc.dart';
-import 'package:untitled7/UI/Pages/biz_profile.dart';
+import 'package:untitled7/UI/Pages/account.dart';
 import 'package:untitled7/UI/Pages/wallet.dart';
+import 'package:untitled7/test_pages/t_p_1.dart';
 
 import '../../components/facility_item.dart';
-import '../../new.dart';
-import 'create_event.dart';
+import '../../event_pages.dart';
+import 'enquiry.dart';
 import 'members.dart';
 
 class Home extends StatefulWidget {
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> {
     'assets/icons/Wallet.png',
   ];
   List<String> texts = [
-    'Biz Profile',
+    'Account',
     'Members',
     'Enquiries',
     'Wallet',
@@ -45,6 +46,8 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           toolbarHeight: 75.h,
           automaticallyImplyLeading: false,
+          forceMaterialTransparency: true,
+
           title: Row(
             children: [
               Image.asset(
@@ -61,8 +64,8 @@ class _HomeState extends State<Home> {
                 decoration: ShapeDecoration(
                   color: const Color(0x19FEFEFE),
                   shape: RoundedRectangleBorder(
-                    side:
-                        BorderSide(width: 0.30.w, color: const Color(0x26B2B2B2)),
+                    side: BorderSide(
+                        width: 0.30.w, color: const Color(0x26B2B2B2)),
                     borderRadius: BorderRadius.circular(140.r),
                   ),
                 ),
@@ -172,8 +175,8 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 25.h, vertical: 10.h),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 25.h, vertical: 10.h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -242,8 +245,8 @@ class _HomeState extends State<Home> {
                                   height: 40.h,
                                   decoration: ShapeDecoration(
                                     image: const DecorationImage(
-                                      image:
-                                          AssetImage("assets/images/imgLog.png"),
+                                      image: AssetImage(
+                                          "assets/images/imgLog.png"),
                                       fit: BoxFit.fill,
                                     ),
                                     shape: OvalBorder(
@@ -354,20 +357,21 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.h, vertical: 30.w),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.h, vertical: 30.w),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           GestureDetector(
                               onTap: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (_) => const BizProfile()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) =>  Account()));
                               },
-                              child: FacilityItem(icon: icons[0], text: texts[0])),
+                              child:
+                                  FacilityItem(icon: icons[0], text: texts[0])),
                           GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -379,10 +383,10 @@ class _HomeState extends State<Home> {
                                   FacilityItem(icon: icons[1], text: texts[1])),
                           GestureDetector(
                               onTap: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (_) => const Wallet()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => const Enquiry()));
                               },
                               child:
                                   FacilityItem(icon: icons[2], text: texts[2])),
@@ -435,7 +439,7 @@ class _HomeState extends State<Home> {
                                   context,
                                   MaterialPageRoute(
                                       // builder: (_) => const CreateEvent()));
-                              builder: (_) =>  const MyHomePage()));
+                                      builder: (_) => const EventPages()));
                             },
                             child: Text(
                               'add new',
@@ -455,14 +459,15 @@ class _HomeState extends State<Home> {
 
                     ///-----------Tab Bar  -------------------///
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25.w,vertical: 24.h),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 25.w, vertical: 24.h),
                       child: ButtonsTabBar(
                         buttonMargin: EdgeInsets.only(right: 32),
                         splashColor: Colors.white,
                         height: 30,
                         elevation: 0,
-                        contentPadding:
-                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.w),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 12.w, vertical: 6.w),
                         radius: 0,
                         borderWidth: 0.9,
                         borderColor: Color(0xFF282828),
@@ -500,8 +505,8 @@ class _HomeState extends State<Home> {
                       child: TabBarView(children: [
                         ///-----------Tab 1  -------------------///
                         Padding(
-                          padding:
-                          EdgeInsets.symmetric(vertical: 8.h, horizontal: 16),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8.h, horizontal: 16),
                           child: SizedBox(
                             height: 270.h,
                             child: BlocBuilder<EventBloc, EventState>(
@@ -547,7 +552,8 @@ class _HomeState extends State<Home> {
                                                   height: 31.h,
                                                   decoration: BoxDecoration(
                                                     gradient: LinearGradient(
-                                                      begin: Alignment(-0.00, 1.00),
+                                                      begin: Alignment(
+                                                          -0.00, 1.00),
                                                       end: Alignment(0, -1),
                                                       colors: [
                                                         Color(0x91191919),
@@ -569,10 +575,13 @@ class _HomeState extends State<Home> {
                                                 child: Center(
                                                   child: Text(
                                                     'Weekly',
-                                                    style: GoogleFonts.montserrat(
-                                                      color: const Color(0xFFFEFEFE),
+                                                    style:
+                                                        GoogleFonts.montserrat(
+                                                      color: const Color(
+                                                          0xFFFEFEFE),
                                                       fontSize: 10.sp,
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
                                                   ),
                                                 ),
@@ -596,7 +605,8 @@ class _HomeState extends State<Home> {
                                               child: Text(
                                                 '17 booked',
                                                 style: GoogleFonts.montserrat(
-                                                  color: const Color(0xFFFEFEFE),
+                                                  color:
+                                                      const Color(0xFFFEFEFE),
                                                   fontSize: 10.sp,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -608,8 +618,8 @@ class _HomeState extends State<Home> {
                                           height: 8,
                                         ),
                                         Padding(
-                                          padding:
-                                          EdgeInsets.symmetric(vertical: 4.w),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 4.w),
                                           child: SizedBox(
                                             width: 153.w,
                                             child: Text(
@@ -624,8 +634,8 @@ class _HomeState extends State<Home> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                          EdgeInsets.symmetric(vertical: 4.h),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 4.h),
                                           child: SizedBox(
                                             width: 153.w,
                                             child: Text(
@@ -652,6 +662,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ),
+
                         ///-----------Tab 2  -------------------///
                         SingleChildScrollView(
                           child: Center(
@@ -666,6 +677,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ),
+
                         ///-----------Tab 3  -------------------///
                         SingleChildScrollView(
                           child: Center(

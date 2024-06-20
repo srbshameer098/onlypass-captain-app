@@ -143,6 +143,7 @@ class _WalletState extends State<Wallet> {
                         trailing: Text(
                           messages['amount']!,
                           style: TextStyle(
+                            fontSize: 14.sp,
                             color: messages['status'] == 'Due'
                                 ? Color(0xffFF4D4D)
                                 : messages['status'] == 'Expiring'
@@ -349,7 +350,7 @@ class _WalletState extends State<Wallet> {
 
   Widget _buildTransferButton() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 28.w,vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 12),
       width: double.infinity,
       height: 52.h,
       decoration: BoxDecoration(
@@ -373,8 +374,9 @@ class _WalletState extends State<Wallet> {
   Widget _buildTransferText() {
     return Row(
       children: [
+        SizedBox(width: 6.w,),
         Text(
-          'Available To Transfer',
+          'Transferrable amount',
           textAlign: TextAlign.center,
           style: GoogleFonts.montserrat(
             color: AppColors.transferTextColor,
@@ -423,23 +425,18 @@ class _WalletState extends State<Wallet> {
           )
         ],
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Transfer now',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(
-              color: Color(0xFF191919),
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w500,
-              height: 0.11.h,
-              letterSpacing: -0.32,
-            ),
+      child: Center(
+        child: Text(
+          'Transfer now',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.montserrat(
+            color: Color(0xFF191919),
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w500,
+            height: 0.11.h,
+            letterSpacing: -0.32,
           ),
-        ],
+        ),
       ),
     );
   }

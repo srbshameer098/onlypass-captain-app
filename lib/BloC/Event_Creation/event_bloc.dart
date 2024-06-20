@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:untitled7/Repository/API/Event_Api.dart';
 
@@ -38,7 +39,9 @@ class EventBloc extends Bloc<EventEvent, EventState> {
         );
       }
       catch(e){
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
         emit(EventBloCError());
       }
     });

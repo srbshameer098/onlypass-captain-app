@@ -5,11 +5,11 @@ import 'Pages/home.dart';
 import 'Pages/message_page.dart';
 import 'Pages/scan_page.dart';
 
-class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+class BottomNavBarFalse extends StatefulWidget {
+  const BottomNavBarFalse({super.key});
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
+  State<BottomNavBarFalse> createState() => _BottomNavBarFalseState();
 }
 
 final screens = [
@@ -19,7 +19,7 @@ final screens = [
 ];
 int _selectedIndex = 1;
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class _BottomNavBarFalseState extends State<BottomNavBarFalse> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

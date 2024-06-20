@@ -1,14 +1,13 @@
 {
   "project_info": {
-    "project_number": "895178447738",
-    "firebase_url": "https://onlypass-captain-40e0b-default-rtdb.firebaseio.com",
-    "project_id": "onlypass-captain-40e0b",
-    "storage_bucket": "onlypass-captain-40e0b.appspot.com"
+    "project_number": "101146301709",
+    "project_id": "captain-3ef2d",
+    "storage_bucket": "captain-3ef2d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:895178447738:android:274a144d7f92f43a53d4c3",
+        "mobilesdk_app_id": "1:101146301709:android:32ea9ec3f6fb0f6edb0c44",
         "android_client_info": {
           "package_name": "com.onlypass.captian.untitled7"
         }
@@ -16,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDXq7PseZp_Mzrqcb9R4VDsv4v323YUhEs"
+          "current_key": "AIzaSyD1e5ms-bbw16jmaT6gcEt1dgJ8IgWp_9s"
         }
       ],
       "services": {

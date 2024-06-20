@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled7/UI/Register/verify_Code.dart';
 
 import '../../Bloc/LogIn/log_in_bloc.dart';
 import '../../Utils/utils.dart';
 import '../Register/verify.dart';
-import '../s1.dart';
-
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -20,7 +20,7 @@ class LogInPage extends StatefulWidget {
 class _LogInPageState extends State<LogInPage> {
   bool loading = false;
 
-  // final auth = FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
 
   final PhoneNumberController = TextEditingController();
 
@@ -79,9 +79,9 @@ class _LogInPageState extends State<LogInPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Enter registered mobile number',
+                    'Phone number for verification',
                     style: GoogleFonts.montserrat(
-                      color: const Color(0xFFE4E4E4),
+                      color: Color(0xFFE4E4E4),
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
                     ),
@@ -91,7 +91,7 @@ class _LogInPageState extends State<LogInPage> {
                     child: SizedBox(
                       width: 375.w,
                       child: Text(
-                        'Please confirm your country code and enter your registered mobile number with Onlypass.',
+                        "Enter your phone number for a quick OTP verification. We'll get you logged in right away!",
                         style: GoogleFonts.montserrat(
                           color: const Color(0xFF6F6F70),
                           fontSize: 12.sp,
@@ -237,30 +237,77 @@ class _LogInPageState extends State<LogInPage> {
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      width: 375.w,
-                      height: 60.h,
+                      width: double.infinity.w,
+                      height: 56.h,
                       decoration: ShapeDecoration(
                         color: const Color(0xFF282828),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(1.r)),
                       ),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          TextFormField(
-                            keyboardType: TextInputType.phone,
-                            controller: PhoneNumberController,
-                            decoration: const InputDecoration(
-                                focusedBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                prefixText: '+91  ',
-                                prefixStyle: TextStyle(color: Colors.white),
-                                hintText: 'Enter 10 Digit Mobile Number'),
-                          ),
-                        ],
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              'assets/icons/indflag.png',
+                              height: 16,
+                            ),
+                            Text(
+                              '+91',
+                              style: GoogleFonts.montserrat(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                                letterSpacing: 1.60,
+                              ),
+                            ),
+                            Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: Colors.grey,
+                            ),
+
+                            VerticalDivider(
+                               color: Color(0xFF191919),
+                               width: 1.5,
+                              thickness: 2,
+                              indent: 8.h,
+                              endIndent: 8.h,
+                             ),
+                            SizedBox(width: 5.w,),
+                            SizedBox(
+                              height: 20,
+                              width: 240,
+                              child: TextFormField(
+                                textInputAction:TextInputAction.done,
+                                keyboardType: TextInputType.phone,
+                                controller: PhoneNumberController,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(10),
+                                ],
+                                style: GoogleFonts.montserrat(
+                                  color: Color(0xFFFEFEFE),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 2,
+                                ),
+                                cursorColor: Colors.white,
+                                decoration: InputDecoration(
+                                  focusedBorder: InputBorder.none,
+                                  disabledBorder: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  hintText: 'Enter 10 Digit Mobile Number',
+                                  hintStyle: GoogleFonts.montserrat(
+                                    color: Color(0xFF6F6F70),
+                                    fontSize: 14.sp,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w400,letterSpacing: -0.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -275,8 +322,36 @@ class _LogInPageState extends State<LogInPage> {
                         if (state is LoginblocLoaded) {
                           BlocProvider.of<LogInBloc>(context).logInModel;
 
-                          Navigator.push(
-                              context, MaterialPageRoute(builder: (_) => S1()));
+                          auth.verifyPhoneNumber(
+                              phoneNumber: '+91${PhoneNumberController.text}',
+                              verificationCompleted: (_) {
+                                setState(() {
+                                  loading = false;
+                                });
+                              },
+                              verificationFailed: (e) {
+                                setState(() {
+                                  loading = false;
+                                });
+                                Utils().toastMessage(e.toString());
+                              },
+                              codeSent: (String verificationId, int? token) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Verify(
+                                              verificationId: verificationId,
+                                            )));
+                                setState(() {
+                                  loading = false;
+                                });
+                              },
+                              codeAutoRetrievalTimeout: (e) {
+                                Utils().toastMessage(e.toString());
+                                setState(() {
+                                  loading = false;
+                                });
+                              });
                           print('hello');
                         }
                         if (state is LoginblocError) {
@@ -291,36 +366,36 @@ class _LogInPageState extends State<LogInPage> {
                             loading = true;
                           });
 
-                          // auth.verifyPhoneNumber(
-                          //     phoneNumber: '+91${PhoneNumberController.text}',
-                          //     verificationCompleted: (_) {
-                          //       setState(() {
-                          //         loading = false;
-                          //       });
-                          //     },
-                          //     verificationFailed: (e) {
-                          //       setState(() {
-                          //         loading = false;
-                          //       });
-                          //       Utils().toastMessage(e.toString());
-                          //     },
-                          //     codeSent: (String verificationId, int? token) {
-                          //       Navigator.push(
-                          //           context,
-                          //           MaterialPageRoute(
-                          //               builder: (context) => Verify(
-                          //                     verificationId: verificationId,
-                          //                   )));
-                          //       setState(() {
-                          //         loading = false;
-                          //       });
-                          //     },
-                          //     codeAutoRetrievalTimeout: (e) {
-                          //       Utils().toastMessage(e.toString());
-                          //       setState(() {
-                          //         loading = false;
-                          //       });
-                          //     });
+                          auth.verifyPhoneNumber(
+                              phoneNumber: '+91${PhoneNumberController.text}',
+                              verificationCompleted: (_) {
+                                setState(() {
+                                  loading = false;
+                                });
+                              },
+                              verificationFailed: (e) {
+                                setState(() {
+                                  loading = false;
+                                });
+                                Utils().toastMessage(e.toString());
+                              },
+                              codeSent: (String verificationId, int? token) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Verify(
+                                              verificationId: verificationId,
+                                            )));
+                                setState(() {
+                                  loading = false;
+                                });
+                              },
+                              codeAutoRetrievalTimeout: (e) {
+                                Utils().toastMessage(e.toString());
+                                setState(() {
+                                  loading = false;
+                                });
+                              });
                         },
                         child: Container(
                           width: 378.w,

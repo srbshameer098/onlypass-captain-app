@@ -66,11 +66,7 @@ class _MessagePageState extends State<MessagePage> {
             gradient: LinearGradient(
               begin: Alignment(1.00, 0.00),
               end: Alignment(-1, 0),
-              colors: [
-                Color(0x00191919),
-                Color(0xFF737373),
-                Color(0x00191919)
-              ],
+              colors: [Color(0x00191919), Color(0xFF737373), Color(0x00191919)],
             ),
           ),
         ),
@@ -173,7 +169,8 @@ class _MessagePageState extends State<MessagePage> {
                 ///-----------Tab Bar  -------------------///
 
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.w,vertical: 24.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 25.w, vertical: 24.h),
                   child: ButtonsTabBar(
                     buttonMargin: EdgeInsets.only(right: 32.w),
                     splashColor: Colors.white,
@@ -239,30 +236,43 @@ class _MessagePageState extends State<MessagePage> {
                                   ),
                                 ),
                                 Positioned(
-                                  right: BorderSide.strokeAlignCenter,
-                                  bottom: BorderSide.strokeAlignCenter,
-                                  height: 22.h,
+                                    right: BorderSide.strokeAlignCenter,
+                                    bottom: BorderSide.strokeAlignCenter,
+                                    height: 22.h,
                                     child: Container(
-                                  width: 22.w,
-                                  height: 22.h,
-                                  decoration: ShapeDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          "assets/images/onlypassIcon.png"),
-                                      fit: BoxFit.fill,
-                                    ),
-                                    shape: OvalBorder(),
-                                  ),
-                                ))
+                                      width: 22.w,
+                                      height: 22.h,
+                                      decoration: ShapeDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/onlypassIcon.png"),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        shape: OvalBorder(),
+                                      ),
+                                    ))
                               ],
                             ),
                             title: Text(messages['member']!,
-                                style: TextStyle(color: Colors.white)),
-                            subtitle: Text('${messages['Description']!} ${messages['amount']!}'),
+                                style: GoogleFonts.montserrat(
+                                  color: Color(0xFFFEFEFE),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                )),
+                            subtitle: Text(
+                              '${messages['Description']!} ${messages['amount']!}',
+                              style: GoogleFonts.montserrat(
+                                color: Color(0xFFA3A3A3),
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                             trailing: Text(
                               messages['date']!,
-                              style: TextStyle(
-                                color: Colors.grey,
+                              style: GoogleFonts.montserrat(
+                                color: Color(0xFF545454),
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           );
@@ -270,7 +280,9 @@ class _MessagePageState extends State<MessagePage> {
                         separatorBuilder: (context, index) => Container(
                           padding: EdgeInsets.symmetric(horizontal: 16.w),
                           height: 20.h,
-                          child: Divider(color: Color(0xFF282828),),
+                          child: Divider(
+                            color: Color(0xFF282828),
+                          ),
                         ),
                       ),
                     ),
@@ -310,5 +322,3 @@ class _MessagePageState extends State<MessagePage> {
     );
   }
 }
-
-

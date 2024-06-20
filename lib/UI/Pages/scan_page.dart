@@ -156,14 +156,14 @@ class _ScanState extends State<ScanPage> {
             return BottomSheetDetails();
           },
         );
-        await showModalBottomSheet(
-          context: context,
-          isDismissible: true,
-          isScrollControlled: true,
-          builder: (BuildContext context) {
-            return BottomSheetDetails1();
-          },
-        );
+        // await showModalBottomSheet(
+        //   context: context,
+        //   isDismissible: true,
+        //   isScrollControlled: true,
+        //   builder: (BuildContext context) {
+        //     return BottomSheetDetails1();
+        //   },
+        // );
       } finally {
         // Ensure camera resumes even on exceptions
         isProcessingQR = false;

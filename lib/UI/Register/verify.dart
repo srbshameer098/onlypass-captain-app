@@ -4,10 +4,12 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Utils/utils.dart';
 import '../s1.dart';
 
 class Verify extends StatefulWidget {
   final String verificationId;
+
   const Verify({super.key, required this.verificationId});
 
   @override
@@ -15,6 +17,8 @@ class Verify extends StatefulWidget {
 }
 
 class _VerifyState extends State<Verify> {
+  bool loading = false;
+
   final auth = FirebaseAuth.instance;
   final VerificationCodeController = TextEditingController();
 
@@ -66,38 +70,53 @@ class _VerifyState extends State<Verify> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
+                  Text(
+                    'A verification code has been sent to +91 9846 75 1287',
+
+                    style: GoogleFonts.montserrat(
+                      color: Color(0xFF6F6F70),
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: OtpTextField(
-                      fieldWidth: 82.w,
-                      fieldHeight: 55.h,
+                      alignment: FractionalOffset.center,
+                      // handleControllers: (controllers) =>
+                      //     VerificationCodeController,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      fieldWidth: 48.w,
+                      fieldHeight: 48.h,
                       borderWidth: 1,
                       borderRadius: BorderRadius.circular(0),
                       focusedBorderColor: Colors.grey,
                       textStyle: GoogleFonts.montserrat(color: Colors.white),
-                      fillColor:Color(0xFF282828) ,
+                      fillColor: Color(0xFF282828),
                       filled: true,
                       keyboardType: TextInputType.number,
                       cursorColor: Colors.white,
-                      numberOfFields: 4,
+                      numberOfFields: 6,
                       enabledBorderColor: Colors.transparent,
                       //set to true to show as box or false to show as dash
                       showFieldAsBox: true,
                       //runs when a code is typed in
                       onCodeChanged: (String code) {
+                        VerificationCodeController.text = code;
                         //handle validation or checks here
                       },
                       //runs when every textfield is filled
-                      onSubmit: (String verificationCode){
+                      onSubmit: (String verificationCode) {
+                        VerificationCodeController.text = verificationCode;
                         showDialog(
                             context: context,
-                            builder: (context){
+                            builder: (context) {
                               return AlertDialog(
                                 title: Text("Verification Code"),
-                                content: Text('Code entered is $verificationCode'),
+                                content:
+                                    Text('Code entered is $verificationCode'),
                               );
-                            }
-                        );
+                            });
                       }, // end onSubmit
                     ),
                   ),
@@ -117,7 +136,7 @@ class _VerifyState extends State<Verify> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.pop(context);
                             },
                             child: Text(
@@ -135,55 +154,39 @@ class _VerifyState extends State<Verify> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        'Verify over a phone call',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.montserrat(
-                          color: Color(0xFF2193DD),
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
+
                   Padding(
                     padding: EdgeInsets.only(top: 24.h),
                     child: GestureDetector(
                       onTap: () async {
+                        setState(() {
+                          loading = true;
+                        });
+
                         final credential = PhoneAuthProvider.credential(
                             verificationId: widget.verificationId,
-                            smsCode: VerificationCodeController.text.toString()
-                        );
-                        try{
+                            smsCode:
+                                VerificationCodeController.text.toString());
+                        try {
                           await auth.signInWithCredential(credential);
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=> S1()));
-                        }catch(e){
-                          SnackBar(
-                            backgroundColor: Colors.red[900],
-                            content: const Text(
-                              'Error',
-                              style: TextStyle(color: Colors.white),
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(builder: (_) => S1()),
+                                  (Route<dynamic> route) => false,);
+                        } catch (e) {
+                          setState(() {
+                            loading = false;
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              action: SnackBarAction(label:'Try again',textColor: Colors.green, onPressed: (){
+                                Navigator.pop(context);
+                              }),
+                              content: Text('Login failed',style: TextStyle(color: Colors.white),),
+                              backgroundColor: Colors.grey[900],
                             ),
                           );
+                          Utils().toastMessage(e.toString());
                         }
-
-                        // auth.verifyPhoneNumber(
-                        //     phoneNumber: PhoneNumberController.text,
-                        //     verificationCompleted: (_){
-                        //
-                        //     },
-                        //     verificationFailed: (e){
-                        //       Utils().toastMessage(e.toString());
-                        //     },
-                        //     codeSent: (String verificationId, int? token){
-                        //       Navigator.push(context, MaterialPageRoute(builder: (_)=> Verification(verificationId: verificationId,)));
-                        //     },
-                        //     codeAutoRetrievalTimeout: (e){
-                        //       Utils().toastMessage(e.toString());
-                        //     });
                       },
                       child: Container(
                         width: 376.w,

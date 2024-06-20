@@ -6,11 +6,15 @@ class CustomRadioButton extends StatefulWidget {
   final String text;
   final bool isSelected;
   final Function onSelect;
+  final TextStyle fontStyle;
+  final String description;
 
-  const CustomRadioButton({
+  const CustomRadioButton({super.key,
     required this.text,
     required this.isSelected,
     required this.onSelect,
+    required this.fontStyle,
+    required this.description,
   });
 
   @override
@@ -23,40 +27,64 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
     return InkWell(
       onTap: () => widget.onSelect(widget.text),
       child: Container(
-        height: 48.h,width: 180.w,
-        padding:  EdgeInsets.symmetric(horizontal: 24.w,vertical: 16.h),
+        width: double.infinity.w,
+        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 14.h),
         decoration: BoxDecoration(
-          color: widget.isSelected ? Colors.white : Colors.grey[900],
+          color: widget.isSelected ? Color(0xFFFEFEFE) : Color(0xFF282828),
           borderRadius: BorderRadius.circular(1.0.r),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            widget.isSelected
-                ? Container(
-                    width: 12.w,
-                    height: 12.h,
-                    decoration: ShapeDecoration(
-                      shape: OvalBorder(
-                        side: BorderSide(width: 3.w, color: Color(0xFF00FF00)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                widget.isSelected
+                    ? Container(
+                        width: 12.w,
+                        height: 12.h,
+                        decoration: ShapeDecoration(
+                          shape: OvalBorder(
+                            side: BorderSide(
+                                width: 3.w, color: Color(0xFF00FF00)),
+                          ),
+                        ),
+                      )
+                    : Icon(
+                        Icons.circle_outlined,
+                        color: Color(0xFFFEFEFE),
+                        size: 12.sp,
                       ),
-                    ),
-                  )
-                : Icon(
-                    Icons.circle_outlined,
-                    color: Colors.white,
-                    size: 14.sp,
+                SizedBox(
+                  width: 8.w,
+                ),
+                Text(
+                  widget.text,
+                  style: widget.fontStyle,
+                  // style: GoogleFonts.montserrat(
+                  //   fontSize: 14.sp,
+                  //   color: widget.isSelected ? Colors.black : Colors.grey,
+                  // ),
+                ),
+              ],
+            ),
+            Container(
+
+              child: widget.description.isEmpty ?
+                  SizedBox():
+              Padding(
+                padding: EdgeInsets.only(top: 10.h),
+                child: Text(
+                  widget.description,
+                  style: GoogleFonts.montserrat(
+                    color: widget.isSelected ? Color(0xFF818181) : Color(0xFFD9D9D9),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
                   ),
-            SizedBox(
-              width: 8.w,
-            ),
-            Text(
-              widget.text,
-              style: GoogleFonts.montserrat(
-                fontSize: 14,
-                color: widget.isSelected ? Colors.black : Colors.grey,
+                ),
               ),
-            ),
+            )
           ],
         ),
       ),
