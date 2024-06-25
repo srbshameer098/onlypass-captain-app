@@ -34,6 +34,7 @@ class _EventPagesState extends State<EventPages> {
     return Scaffold(
       // appBar: AppBar(
       //   leading: GestureDetector(
+      //
       //     onTap: () {
       //       showDialog(
       //         barrierDismissible: false,
@@ -109,9 +110,9 @@ class _EventPagesState extends State<EventPages> {
         stepSize: 0,
         selectedColor: Color(0xFF37F840),
         unselectedColor: Colors.transparent,
-        width: 85.w,
-        height: 85.h,
-        selectedStepSize: 5,
+        width: 70.w,
+          height: 70.h,
+        selectedStepSize: 2,
         // roundedCap: (_, __) => true,
         child: GestureDetector(
           onTap: () {
@@ -133,10 +134,10 @@ class _EventPagesState extends State<EventPages> {
           },
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
-            radius: 33.r,
+            radius: 30.r,
             child: CircleAvatar(
               backgroundColor: Color(0xFFFEFEFE),
-              radius: 32.r,
+              radius: 30.r,
               child: Center(child: Icon(Icons.east)),
             ),
           ),

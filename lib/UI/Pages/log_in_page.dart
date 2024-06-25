@@ -4,11 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled7/UI/Register/verify_Code.dart';
-
-import '../../Bloc/LogIn/log_in_bloc.dart';
-import '../../Utils/utils.dart';
-import '../Register/verify.dart';
+import 'package:untitled7/UI/Register/verify.dart';
+import 'package:untitled7/Bloc/LogIn/log_in_bloc.dart';
+import 'package:untitled7/Utils/utils.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -19,24 +17,8 @@ class LogInPage extends StatefulWidget {
 
 class _LogInPageState extends State<LogInPage> {
   bool loading = false;
-
   final auth = FirebaseAuth.instance;
-
-  final PhoneNumberController = TextEditingController();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   Future.delayed(Duration(milliseconds: 100), () {
-  //     showModalBottomSheet(
-  //       context: context,
-  //       builder: (context) => Container(
-  //         height: 343,
-  //         color: Colors.red,
-  //       ), // Replace with your bottom sheet content widget
-  //     );
-  //   });
-  // }
+  final phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +46,7 @@ class _LogInPageState extends State<LogInPage> {
                       'assets/images/captianLogo.png',
                       alignment: Alignment.center,
                       width: 143.w,
-                      height: 164.80.h,
+                      height: 164.8.h,
                     ),
                   ),
                 ],
@@ -73,16 +55,16 @@ class _LogInPageState extends State<LogInPage> {
             Container(
               padding: EdgeInsets.all(29.w),
               height: 343.h,
-              width: double.infinity.w,
+              width: double.infinity,
               color: Colors.grey[900],
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Phone number for verification',
-                    style: GoogleFonts.montserrat(
+                    style: TextStyle(
                       color: Color(0xFFE4E4E4),
-                      fontSize: 16.sp,
+                      fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -90,323 +72,172 @@ class _LogInPageState extends State<LogInPage> {
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: SizedBox(
                       width: 375.w,
-                      child: Text(
+                      child: const Text(
                         "Enter your phone number for a quick OTP verification. We'll get you logged in right away!",
-                        style: GoogleFonts.montserrat(
-                          color: const Color(0xFF6F6F70),
-                          fontSize: 12.sp,
+                        style: TextStyle(
+                          color: Color(0xFF6F6F70),
+                          fontSize: 12,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(vertical: 16.h),
-                  //   child: Container(
-                  //     padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  //     width: 375.w,
-                  //     height: 55.h,
-                  //     decoration: ShapeDecoration(
-                  //       color: const Color(0xFF282828),
-                  //       shape: RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(1.r)),
-                  //     ),
-                  //     child: TextFormField(
-                  //       controller: PhoneNumberController,
-                  //       inputFormatters: [
-                  //         LengthLimitingTextInputFormatter(13),
-                  //       ],
-                  //       decoration: InputDecoration(),
-                  //     ),
-                  //     // child: IntlPhoneField(
-                  //     //   cursorColor: Colors.white,
-                  //     //   inputFormatters: [
-                  //     //     LengthLimitingTextInputFormatter(10),
-                  //     //   ],
-                  //     //   disableAutoFillHints: false,
-                  //     //   autofocus: true,
-                  //     //   disableLengthCheck: true,
-                  //     //   enabled: true,
-                  //     //   style: GoogleFonts.montserrat(
-                  //     //     color: Colors.white,
-                  //     //     fontSize: 16.sp,
-                  //     //     fontWeight: FontWeight.w500,
-                  //     //   ),
-                  //     //   keyboardType: TextInputType.phone,
-                  //     //   dropdownIconPosition: IconPosition.trailing,
-                  //     //   dropdownIcon:
-                  //     //       const Icon(Icons.keyboard_arrow_down_rounded),
-                  //     //   dropdownTextStyle: GoogleFonts.montserrat(
-                  //     //     color: Colors.white,
-                  //     //     fontSize: 16.sp,
-                  //     //     fontWeight: FontWeight.w500,
-                  //     //   ),
-                  //     //
-                  //     //   decoration: InputDecoration(
-                  //     //     prefixIconColor: Colors.white,
-                  //     //     fillColor: const Color(0xFF282828),
-                  //     //     filled: false,
-                  //     //     hintText: '10 Digit mobile number',
-                  //     //     hintStyle: GoogleFonts.montserrat(
-                  //     //       color: const Color(0xFF6F6F70),
-                  //     //       fontSize: 16.sp,
-                  //     //       fontStyle: FontStyle.italic,
-                  //     //       fontWeight: FontWeight.w400,
-                  //     //     ),
-                  //     //     border: const OutlineInputBorder(
-                  //     //         borderSide: BorderSide.none),
-                  //     //   ),
-                  //     //   initialCountryCode: 'IN',
-                  //     //   // You can set the initial country code here
-                  //     //   onChanged: (phone) {
-                  //     //     if (kDebugMode) {
-                  //     //       print(phone.completeNumber);
-                  //     //     } // This will print the complete phone number including the country code
-                  //     //   },
-                  //     // ),
-                  //   ),
-                  // ),
-                  // Padding(
-                  //   padding: EdgeInsets.only(top: 24.w),
-                  //   child: GestureDetector(
-                  //     onTap: () {
-                  //       auth.verifyPhoneNumber(
-                  //           phoneNumber: '+917994770085',
-                  //           verificationCompleted: (_) {},
-                  //           verificationFailed: (e) {
-                  //             SnackBar(
-                  //               backgroundColor: Colors.red[900],
-                  //               content: const Text(
-                  //                 'verification Failed',
-                  //                 style: TextStyle(color: Colors.white),
-                  //               ),
-                  //             );
-                  //           },
-                  //           codeSent: (String verificationId, int? token) {
-                  //             Navigator.push(
-                  //                 context,
-                  //                 MaterialPageRoute(
-                  //                     builder: (_) => Verify(
-                  //                           verificationId: verificationId,
-                  //                         )));
-                  //           },
-                  //           codeAutoRetrievalTimeout: (e) {
-                  //             SnackBar(
-                  //               backgroundColor: Colors.red[900],
-                  //               content: const Text(
-                  //                 'Auto Retrieval Timeout',
-                  //                 style: TextStyle(color: Colors.white),
-                  //               ),
-                  //             );
-                  //           });
-                  //     },
-                  //     child: Container(
-                  //       width: 378.w,
-                  //       height: 48.h,
-                  //       decoration: ShapeDecoration(
-                  //         color: const Color(0xFFFEFEFE),
-                  //         shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(1.r)),
-                  //       ),
-                  //       child: Center(
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.center,
-                  //           crossAxisAlignment: CrossAxisAlignment.center,
-                  //           children: [
-                  //             Text(
-                  //               'Continue',
-                  //               style: GoogleFonts.montserrat(
-                  //                 color: const Color(0xFF191919),
-                  //                 fontSize: 14.sp,
-                  //                 fontWeight: FontWeight.w600,
-                  //               ),
-                  //             ),
-                  //             SizedBox(
-                  //               width: 12.w,
-                  //             ),
-                  //             const Icon(
-                  //               Icons.east_rounded,
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // )
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      width: double.infinity.w,
+                      width: double.infinity,
                       height: 56.h,
                       decoration: ShapeDecoration(
                         color: const Color(0xFF282828),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(1.r)),
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Image.asset(
-                              'assets/icons/indflag.png',
-                              height: 16,
-                            ),
-                            Text(
-                              '+91',
-                              style: GoogleFonts.montserrat(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                height: 0,
-                                letterSpacing: 1.60,
-                              ),
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: Colors.grey,
-                            ),
-
-                            VerticalDivider(
-                               color: Color(0xFF191919),
-                               width: 1.5,
-                              thickness: 2,
-                              indent: 8.h,
-                              endIndent: 8.h,
-                             ),
-                            SizedBox(width: 5.w,),
-                            SizedBox(
-                              height: 20,
-                              width: 240,
-                              child: TextFormField(
-                                textInputAction:TextInputAction.done,
-                                keyboardType: TextInputType.phone,
-                                controller: PhoneNumberController,
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(10),
-                                ],
-                                style: GoogleFonts.montserrat(
-                                  color: Color(0xFFFEFEFE),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: 2,
-                                ),
-                                cursorColor: Colors.white,
-                                decoration: InputDecoration(
-                                  focusedBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  hintText: 'Enter 10 Digit Mobile Number',
-                                  hintStyle: GoogleFonts.montserrat(
-                                    color: Color(0xFF6F6F70),
-                                    fontSize: 14.sp,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w400,letterSpacing: -0.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                          borderRadius: BorderRadius.circular(1.r),
                         ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset(
+                            'assets/icons/indflag.png',
+                            height: 16.sp,
+                          ),
+                          const Text(
+                            '+91',
+                            style:TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 1.6,
+                            ),
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            color: Colors.grey,
+                          ),
+                          VerticalDivider(
+                            color: Color(0xFF191919),
+                            width: 1.5,
+                            thickness: 2,
+                            indent: 8.h,
+                            endIndent: 8.h,
+                          ),
+                          SizedBox(width: 5.w),
+                          SizedBox(
+                            height: 20,
+                            width: 240,
+                            child: TextFormField(
+                              textInputAction: TextInputAction.done,
+                              keyboardType: TextInputType.phone,
+                              controller: phoneNumberController,
+                              inputFormatters: [
+                                LengthLimitingTextInputFormatter(10),
+                              ],
+                              style: const TextStyle(
+                                color: Color(0xFFFEFEFE),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1.6,
+                              ),
+                              cursorColor: Colors.white,
+                              decoration: const InputDecoration(
+                                focusedBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                hintText: 'Enter 10 Digit Mobile Number',
+                                hintStyle: TextStyle(
+                                  color: Color(0xFF6F6F70),
+                                  fontSize: 14,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: -0.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 24.w),
+                    padding: EdgeInsets.only(top: 24.h),
                     child: BlocListener<LogInBloc, LogInState>(
                       listener: (context, state) {
                         if (state is LoginblocLoading) {
-                          print("Loaddddddding");
-                        }
-
-                        if (state is LoginblocLoaded) {
-                          BlocProvider.of<LogInBloc>(context).logInModel;
-
-                          auth.verifyPhoneNumber(
-                              phoneNumber: '+91${PhoneNumberController.text}',
-                              verificationCompleted: (_) {
-                                setState(() {
-                                  loading = false;
-                                });
-                              },
-                              verificationFailed: (e) {
-                                setState(() {
-                                  loading = false;
-                                });
-                                Utils().toastMessage(e.toString());
-                              },
-                              codeSent: (String verificationId, int? token) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Verify(
-                                              verificationId: verificationId,
-                                            )));
-                                setState(() {
-                                  loading = false;
-                                });
-                              },
-                              codeAutoRetrievalTimeout: (e) {
-                                Utils().toastMessage(e.toString());
-                                setState(() {
-                                  loading = false;
-                                });
-                              });
-                          print('hello');
-                        }
-                        if (state is LoginblocError) {
-                          print("error");
-                        }
-                        // TODO: implement listener
-                      },
-                      child: GestureDetector(
-                        onTap: () {
-                          // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Verify_code()));
                           setState(() {
                             loading = true;
                           });
+                        }
 
+                        if (state is LoginblocLoaded) {
                           auth.verifyPhoneNumber(
-                              phoneNumber: '+91${PhoneNumberController.text}',
-                              verificationCompleted: (_) {
-                                setState(() {
-                                  loading = false;
-                                });
-                              },
-                              verificationFailed: (e) {
-                                setState(() {
-                                  loading = false;
-                                });
-                                Utils().toastMessage(e.toString());
-                              },
-                              codeSent: (String verificationId, int? token) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Verify(
-                                              verificationId: verificationId,
-                                            )));
-                                setState(() {
-                                  loading = false;
-                                });
-                              },
-                              codeAutoRetrievalTimeout: (e) {
-                                Utils().toastMessage(e.toString());
-                                setState(() {
-                                  loading = false;
-                                });
+                            phoneNumber: '+91${phoneNumberController.text}',
+                            verificationCompleted: (_) {
+                              setState(() {
+                                loading = false;
                               });
+                            },
+                            verificationFailed: (e) {
+                              setState(() {
+                                loading = false;
+                              });
+                              Utils().toastMessage(e.toString());
+                            },
+                            codeSent: (String verificationId, int? token) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Verify(
+                                    verificationId: verificationId, phoneNum: phoneNumberController.toString(),
+                                  ),
+                                ),
+                              );
+                              setState(() {
+                                loading = false;
+                              });
+                            },
+                            codeAutoRetrievalTimeout: (e) {
+                              Utils().toastMessage(e.toString());
+                              setState(() {
+                                loading = false;
+                              });
+                            },
+                          );
+                        }
+
+                        if (state is LoginblocError) {
+                          setState(() {
+                            loading = false;
+                          });
+                        }
+                      },
+                      child: GestureDetector(
+                        onTap: () {
+                          if (phoneNumberController.text.isEmpty) {
+                            Utils().toastMessage('Enter Mobile Number');
+                          } else if (phoneNumberController.text.length < 10) {
+                            Utils().toastMessage('Enter Valid Mobile Number');
+                          } else {
+                            context.read<LogInBloc>().add(FetchLogin(
+                              phoneNumber:
+                              phoneNumberController.text.toString(),
+                            ));
+                          }
                         },
                         child: Container(
-                          width: 378.w,
                           height: 48.h,
+                          width: double.infinity.w,
                           decoration: ShapeDecoration(
-                            color: const Color(0xFFFEFEFE),
+                            color: const Color(0xFFFefefe),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(1.r)),
+                              borderRadius: BorderRadius.circular(1),
+                            ),
                           ),
                           child: Center(
-                            child: Row(
+                            child: loading
+                                ? const CircularProgressIndicator(
+                              color: Color(0xff282828),
+                            )
+                                : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -418,23 +249,18 @@ class _LogInPageState extends State<LogInPage> {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 12.w,
-                                ),
-                                const Icon(
-                                  Icons.east_rounded,
-                                  color: Colors.black,
-                                ),
+                                SizedBox(width: 12.w),
+                                const Icon(Icons.east_rounded),
                               ],
                             ),
                           ),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

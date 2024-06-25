@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -82,24 +84,35 @@ class _EventConfirmState extends State<EventConfirm> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(Icons.image_outlined,color: Colors.white,size: 24,),
-                  SizedBox(height: 8.h,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(Icons.add,color: Colors.white,size: 20,),
-                      Text(
-                        'Add images',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.montserrat(
-                          color: Color(0xFFFEFEFE),
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
+                    Icon(
+                      Icons.image_outlined,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 20,
                         ),
-                      )
-                    ],
-                  )],
+                        Text(
+                          'Add images',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                            color: Color(0xFFFEFEFE),
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 ),
               ),
             ),
@@ -329,50 +342,120 @@ class _EventConfirmState extends State<EventConfirm> {
                 ),
               ),
             ),
-
           ],
         ),
       ),
       bottomNavigationBar: Padding(
-        padding:  EdgeInsets.only(left: 25.w,right: 25.w,top: 10.h,bottom: 40.h),
+        padding:
+            EdgeInsets.only(left: 25.w, right: 25.w, top: 10.h, bottom: 40.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              width: 176,
-              height: 48,
-              decoration: ShapeDecoration(
-                color: Color(0xFF282828),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(1)),
-              ),
-              child: Center(
-                child: Text(
-                  'Cancel',
-                  style: GoogleFonts.poppins(
-                    color: Color(0xFF818181),
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  height: 48,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF282828),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(1)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Cancel',
+                      style: GoogleFonts.poppins(
+                        color: Color(0xFF818181),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-            SizedBox(width: 24.w,),
-            Container(
-              width: 176,
-              height: 48,
-              decoration: ShapeDecoration(
-                color: Color(0xFFFEFEFE),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(1)),
-              ),
-              child: Center(
-                child: Text(
-                  'Confirm',
-                  style: GoogleFonts.poppins(
-                    color: Color(0xFF191919),
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
+            SizedBox(
+              width: 24.w,
+            ),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        backgroundColor: Color(0xFF191919),
+                        shape: Border.all(color: Colors.transparent, width: 0),
+                        title: Container(
+                          // width: 375,
+                          // height: 300,
+                          padding: EdgeInsets.symmetric(horizontal: 90.w,vertical: 50.h),
+                          decoration:
+                              const BoxDecoration(color: Color(0xFF191919)),
+                          child: Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 72,
+                                  height: 72,
+                                  decoration: ShapeDecoration(
+                                    color: Color(0xFF272727),
+                                    shape: OvalBorder(),
+                                  ),
+                                  child: Center(
+                                    child: Icon(Icons.check_rounded,color: Color(0xFF37F840),size: 50,),
+                                  ),
+                                ),
+                                SizedBox(height: 12.h,),
+                                Text(
+                                  'success!',
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.white,
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(height: 12.h,),
+                                SizedBox(
+                                  width: 200,
+                                  child: Text(
+                                    'Event has been created successfully.',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.montserrat(
+                                      color: Colors.white,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Container(
+                  height: 48,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFFEFEFE),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(1)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Confirm',
+                      style: GoogleFonts.poppins(
+                        color: Color(0xFF191919),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ),
               ),

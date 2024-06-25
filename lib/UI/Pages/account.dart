@@ -5,6 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled7/UI/Pages/members.dart';
 import 'package:untitled7/UI/Pages/wallet.dart';
+import 'package:untitled7/components/Bottom%20Sheets/adv.settings_account.dart';
+
+import '../../components/Bottom Sheets/membership_plan_sheet.dart';
+import '../../components/Bottom Sheets/opening_hours.dart';
 
 class Account extends StatefulWidget {
   const Account({super.key});
@@ -655,25 +659,73 @@ class GymFitSettingsList extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SettingsItem(
-            icon: Icons.settings,
-            title: 'Advanced settings',
-            subtitle: 'Location and payment details',
+          GestureDetector(
+            onTap: (){
+              showModalBottomSheet(
+                context: context,
+                isDismissible: false,
+                isScrollControlled: true,
+                builder: (BuildContext context) {
+                  return const AdvancedSettingsBottomSheet();
+                },
+              );
+            },
+            child: SettingsItem(
+              icon: Icons.settings,
+              title: 'Advanced settings',
+              subtitle: 'Location and payment details',
+            ),
           ),
-          SettingsItem(
-            icon: Icons.access_time,
-            title: 'Opening hours',
-            subtitle: 'Manage your business timings',
+          GestureDetector(
+            onTap: (){
+              showModalBottomSheet(
+                context: context,
+                isDismissible: true,
+                isScrollControlled: true,
+                builder: (BuildContext context) {
+                  return const OpeningHours();
+                },
+              );
+            },
+            child: SettingsItem(
+              icon: Icons.access_time,
+              title: 'Opening hours',
+              subtitle: 'Manage your business timings',
+            ),
           ),
-          SettingsItem(
-            icon: Icons.assignment,
-            title: 'Membership plans',
-            subtitle: 'Manage your packages and prices',
+          GestureDetector(
+            onTap: (){
+              showModalBottomSheet(
+                context: context,
+                isDismissible: false,
+                isScrollControlled: true,
+                builder: (BuildContext context) {
+                  return const MembershipPlanBottomSheet();
+                },
+              );
+            },
+            child: SettingsItem(
+              icon: Icons.assignment,
+              title: 'Membership plans',
+              subtitle: 'Manage your packages and prices',
+            ),
           ),
-          SettingsItem(
-            icon: Icons.fitness_center,
-            title: 'Amenities & equipment',
-            subtitle: 'Manage amenities or equipment list',
+          GestureDetector(
+            onTap: (){
+              showModalBottomSheet(
+                context: context,
+                isDismissible: false,
+                isScrollControlled: true,
+                builder: (BuildContext context) {
+                  return const MembershipPlanBottomSheet();
+                },
+              );
+            },
+            child: SettingsItem(
+              icon: Icons.fitness_center,
+              title: 'Amenities & equipment',
+              subtitle: 'Manage amenities or equipment list',
+            ),
           ),
         ],
       ),

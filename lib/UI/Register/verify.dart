@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../Utils/utils.dart';
 import '../s1.dart';
 
 class Verify extends StatefulWidget {
   final String verificationId;
+  final String phoneNum;
 
-  const Verify({super.key, required this.verificationId});
+  const Verify({super.key, required this.verificationId, required this.phoneNum});
 
   @override
   State<Verify> createState() => _VerifyState();
@@ -18,9 +18,8 @@ class Verify extends StatefulWidget {
 
 class _VerifyState extends State<Verify> {
   bool loading = false;
-
   final auth = FirebaseAuth.instance;
-  final VerificationCodeController = TextEditingController();
+  final verificationCodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class _VerifyState extends State<Verify> {
                       'assets/images/captianLogo.png',
                       alignment: Alignment.center,
                       width: 143.w,
-                      height: 164.80.h,
+                      height: 164.8.h,
                     ),
                   ),
                 ],
@@ -57,7 +56,7 @@ class _VerifyState extends State<Verify> {
             Container(
               padding: EdgeInsets.all(29.w),
               height: 343.h,
-              width: double.infinity.w,
+              width: double.infinity,
               color: Colors.grey[900],
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,10 +70,9 @@ class _VerifyState extends State<Verify> {
                     ),
                   ),
                   Text(
-                    'A verification code has been sent to +91 9846 75 1287',
-
+                    'A verification code has been sent to ${widget.phoneNum}',
                     style: GoogleFonts.montserrat(
-                      color: Color(0xFF6F6F70),
+                      color: const Color(0xFF6F6F70),
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
                     ),
@@ -83,8 +81,6 @@ class _VerifyState extends State<Verify> {
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     child: OtpTextField(
                       alignment: FractionalOffset.center,
-                      // handleControllers: (controllers) =>
-                      //     VerificationCodeController,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       fieldWidth: 48.w,
                       fieldHeight: 48.h,
@@ -98,26 +94,22 @@ class _VerifyState extends State<Verify> {
                       cursorColor: Colors.white,
                       numberOfFields: 6,
                       enabledBorderColor: Colors.transparent,
-                      //set to true to show as box or false to show as dash
                       showFieldAsBox: true,
-                      //runs when a code is typed in
                       onCodeChanged: (String code) {
-                        VerificationCodeController.text = code;
-                        //handle validation or checks here
+                        verificationCodeController.text = code;
                       },
-                      //runs when every textfield is filled
                       onSubmit: (String verificationCode) {
-                        VerificationCodeController.text = verificationCode;
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text("Verification Code"),
-                                content:
-                                    Text('Code entered is $verificationCode'),
-                              );
-                            });
-                      }, // end onSubmit
+                        verificationCodeController.text = verificationCode;
+                        // showDialog(
+                        //   context: context,
+                        //   builder: (context) {
+                        //     return AlertDialog(
+                        //       title: Text("Verification Code"),
+                        //       content: Text('Code entered is $verificationCode'),
+                        //     );
+                        //   },
+                        // );
+                      },
                     ),
                   ),
                   Padding(
@@ -129,9 +121,9 @@ class _VerifyState extends State<Verify> {
                         children: [
                           Text(
                             'Didn’t receive the code?  ',
-                            style: GoogleFonts.montserrat(
+                            style: TextStyle(
                               color: Color(0xFFA3A3A3),
-                              fontSize: 12.sp,
+                              fontSize: 12,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -154,7 +146,6 @@ class _VerifyState extends State<Verify> {
                       ),
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(top: 24.h),
                     child: GestureDetector(
@@ -164,24 +155,33 @@ class _VerifyState extends State<Verify> {
                         });
 
                         final credential = PhoneAuthProvider.credential(
-                            verificationId: widget.verificationId,
-                            smsCode:
-                                VerificationCodeController.text.toString());
+                          verificationId: widget.verificationId,
+                          smsCode: verificationCodeController.text.trim(),
+                        );
+
                         try {
                           await auth.signInWithCredential(credential);
                           Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (_) => S1()),
-                                  (Route<dynamic> route) => false,);
+                            MaterialPageRoute(builder: (_) => S1()),
+                                (Route<dynamic> route) => false,
+                          );
                         } catch (e) {
                           setState(() {
                             loading = false;
                           });
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              action: SnackBarAction(label:'Try again',textColor: Colors.green, onPressed: (){
-                                Navigator.pop(context);
-                              }),
-                              content: Text('Login failed',style: TextStyle(color: Colors.white),),
+                              action: SnackBarAction(
+                                label: 'Try again',
+                                textColor: Colors.green,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              content: Text(
+                                'Login failed',
+                                style: TextStyle(color: Colors.white),
+                              ),
                               backgroundColor: Colors.grey[900],
                             ),
                           );
@@ -194,10 +194,17 @@ class _VerifyState extends State<Verify> {
                         decoration: ShapeDecoration(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(1.r)),
+                            borderRadius: BorderRadius.circular(1.r),
+                          ),
                         ),
                         child: Center(
-                          child: Row(
+                          child: loading
+                              ? const CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.black,
+                            ),
+                          )
+                              : Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -209,21 +216,17 @@ class _VerifyState extends State<Verify> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              SizedBox(
-                                width: 12.w,
-                              ),
-                              const Icon(
-                                Icons.east_rounded,
-                              ),
+                              SizedBox(width: 12.w),
+                              const Icon(Icons.east_rounded),
                             ],
                           ),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

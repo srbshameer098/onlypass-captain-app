@@ -4,13 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled7/Bloc/Event_Creation/event_bloc.dart';
 import 'package:untitled7/Bloc/LogIn/log_in_bloc.dart';
-import 'package:untitled7/UI/Pages/log_in_page.dart';
-import 'package:untitled7/UI/Register/verify.dart';
 import 'package:untitled7/UI/s1.dart';
 
 import 'firebase_options.dart';
-
-final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,14 +19,13 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(430, 934),
+      designSize: const Size(430, 932),
       minTextAdapt: true,
-      splitScreenMode: true,
-      child: Builder(builder: (context) {
+      splitScreenMode: false,
+      builder: (context, child) {
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => LogInBloc()),
@@ -41,13 +36,13 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
               useMaterial3: true,
+              fontFamily: 'Montserrat',
             ),
-            debugShowCheckedModeBanner: false,
+            debugShowCheckedModeBanner: true,
             home: const S1(),
-            // navigatorKey: navigatorKey,
           ),
         );
-      }),
+      },
     );
   }
 }

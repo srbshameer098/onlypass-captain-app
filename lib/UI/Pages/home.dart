@@ -47,7 +47,6 @@ class _HomeState extends State<Home> {
           toolbarHeight: 75.h,
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
-
           title: Row(
             children: [
               Image.asset(
@@ -114,7 +113,21 @@ class _HomeState extends State<Home> {
             )
           ],
           centerTitle: true,
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.transparent,
+          bottom: PreferredSize(
+            preferredSize: Size(double.infinity, 5),
+            child: Container(
+              width: double.infinity,
+              height: 1.h,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment(1.00, 0.00),
+                  end: Alignment(-1, 0),
+                  colors: [Color(0x00191919), Color(0xFF737373), Color(0x00191919)],
+                ),
+              ),
+            ),
+          ),
         ),
         bottomNavigationBar: Container(
           width: double.infinity,
@@ -144,21 +157,6 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 1.h,
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(1.00, 0.00),
-                          end: Alignment(-1, 0),
-                          colors: [
-                            Color(0x00191919),
-                            Color(0xFF737373),
-                            Color(0x00191919)
-                          ],
-                        ),
-                      ),
-                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Center(
@@ -262,7 +260,7 @@ class _HomeState extends State<Home> {
                                   children: [
                                     Text(
                                       'Jayaram Ravi',
-                                      style: GoogleFonts.montserrat(
+                                      style: TextStyle(
                                         color: const Color(0xFF191919),
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w600,
@@ -368,7 +366,7 @@ class _HomeState extends State<Home> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) =>  Account()));
+                                        builder: (_) => Account()));
                               },
                               child:
                                   FacilityItem(icon: icons[0], text: texts[0])),

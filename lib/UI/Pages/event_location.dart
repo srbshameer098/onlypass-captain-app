@@ -106,10 +106,10 @@ class _EventLocationState extends State<EventLocation> {
                   _isSelectedAt ;
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
                 child: Container(
                   width: double.infinity,
-                  color: _isSelectedAt == true ? Color(0xFFFEFEFE) : Color(0xFF282828),
+                  color: _isSelectedAt == true ? const Color(0xFFFEFEFE) : const Color(0xFF282828),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -159,7 +159,7 @@ class _EventLocationState extends State<EventLocation> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 12.h),
                 child: Container(
-                  color: _isSelectedOther == true ? Color(0xFFFEFEFE): Color(0xFF282828),
+                  color: _isSelectedOther == true ? const Color(0xFFFEFEFE): const Color(0xFF282828),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
