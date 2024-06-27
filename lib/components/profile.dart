@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // void main() => runApp(MyApp());
 //
@@ -34,72 +35,172 @@ import 'package:flutter/material.dart';
 // }
 
 class ProfileBottomSheet extends StatelessWidget {
+  const ProfileBottomSheet({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 08.0.h),
+      width: double.infinity.w,
+      height: 628.h,
+      decoration: BoxDecoration(color: Color(0xFF191919)),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      'Profile',
-                      style: TextStyle(fontSize: 20),
+            Padding(
+              padding: EdgeInsets.all(8.0.w),
+              child: Center(
+                child: Container(
+                  width: 44.w,
+                  height: 3.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF464646),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100.r),
                     ),
                   ),
                 ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
                 IconButton(
-                  icon: Icon(Icons.more_vert),
+                  icon: const Icon(Icons.arrow_back_ios_new_rounded,color: Color(0xFFFEFEFE),size: 16,),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                const Text(
+                  'Profile',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    height: 0,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.more_vert,color: Color(0xFFFEFEFE),),
                   onPressed: () {},
                 ),
               ],
             ),
-            CircleAvatar(
-              radius: 40,
-              backgroundImage: NetworkImage(
-                  'https://example.com/your-image-url.jpg'), // Replace with your image URL
+            SizedBox(
+              height: 40.h,
             ),
-            SizedBox(height: 8),
-            Text(
-              'Shafeek Ahmed',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Container(
+              width: 96.w,
+              height: 96.h,
+              decoration: ShapeDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/icons/logo.png'),
+                  fit: BoxFit.fill,
+                ),
+                shape: OvalBorder(),
+              ),
             ),
-            SizedBox(height: 16),
+            Padding(
+              padding: EdgeInsets.all(16.0.w),
+              child: Text(
+                'Shafeek Ahmed',
+                style: TextStyle(
+                  color: Color(0xFFFDFDFD),
+                  fontSize: 16.sp,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w500,
+                  height: 0,
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Column(
                   children: [
-                    IconButton(
-                      icon: Icon(Icons.calendar_today),
-                      onPressed: () {},
+                    Container(
+                      width: 48,
+                      height: 48,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFF272727),
+                        shape: OvalBorder(),
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.call_outlined,color: Color(0xFFFEFEFE),),
+                        onPressed: () {},
+                      ),
                     ),
-                    Text('Renew'),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Call',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w500,
+                          height: 0,
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 Column(
                   children: [
-                    IconButton(
-                      icon: Icon(Icons.pause),
-                      onPressed: () {},
+                    Container(
+                      width: 48,
+                      height: 48,
+                      decoration: const ShapeDecoration(
+                        color: Color(0xFF272727),
+                        shape: OvalBorder(),
+                      ),
+                      child: IconButton(
+                        icon: Image.asset('assets/icons/messageW.png',height: 20,width: 20,),
+                        onPressed: () {},
+                      ),
                     ),
-                    Text('Hold'),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Message',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w500,
+                          height: 0,
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 Column(
                   children: [
-                    IconButton(
-                      icon: Icon(Icons.phone),
-                      onPressed: () {},
+                    Container(
+                      width: 48,
+                      height: 48,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFF272727),
+                        shape: OvalBorder(),
+                      ),
+                      child: IconButton(
+                        icon: Icon(Icons.email_outlined,color: Color(0xFFFEFEFE),),
+                        onPressed: () {},
+                      ),
                     ),
-                    Text('Contact'),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Email',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w500,
+                          height: 0,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ],

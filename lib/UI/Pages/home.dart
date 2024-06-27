@@ -7,8 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled7/Bloc/Event_Creation/event_bloc.dart';
 import 'package:untitled7/UI/Pages/account.dart';
+import 'package:untitled7/UI/Pages/pre_event.dart';
 import 'package:untitled7/UI/Pages/wallet.dart';
-import 'package:untitled7/test_pages/t_p_1.dart';
 
 import '../../components/facility_item.dart';
 import '../../event_pages.dart';
@@ -47,25 +47,23 @@ class _HomeState extends State<Home> {
           toolbarHeight: 75.h,
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
+
           title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                'assets/icons/Group 33.png',
+                'assets/images/CaptainLogoOnly.png',
                 height: 30.h,
-                width: 80.w,
-              ),
-              SizedBox(
-                width: 36.w,
+                width: 30.w,
               ),
               Container(
-                height: 40.h,
-                width: 207.w,
+                width: 207,
+                height: 40,
                 decoration: ShapeDecoration(
-                  color: const Color(0x19FEFEFE),
+                  color:  Color(0x10FEFEFE),
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                        width: 0.30.w, color: const Color(0x26B2B2B2)),
-                    borderRadius: BorderRadius.circular(140.r),
+                    side: BorderSide(width: 0.30, color: Color(0x26B2B2B2)),
+                    borderRadius: BorderRadius.circular(140),
                   ),
                 ),
                 child: Padding(
@@ -77,8 +75,8 @@ class _HomeState extends State<Home> {
                         backgroundColor: const Color(0xFF202020),
                         child: Image.asset(
                           'assets/icons/performance.png',
-                          height: 16.h,
-                          width: 16.w,
+                          height: 14.h,
+                          width: 14.w,
                         ),
                       ),
                       SizedBox(
@@ -87,8 +85,8 @@ class _HomeState extends State<Home> {
                       Text(
                         'See your performance',
                         style: GoogleFonts.montserrat(
-                          color: Colors.white,
-                          fontSize: 12.sp,
+                          color: Color(0xfffefefe),
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -96,24 +94,16 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
+              Image.asset(
+                'assets/icons/account.png',
+                height: 24.h,
+                width: 24.w,
+              ),
             ],
           ),
-          actions: [
-            Row(
-              children: [
-                Image.asset(
-                  'assets/icons/account.png',
-                  height: 24.h,
-                  width: 24.w,
-                ),
-                SizedBox(
-                  width: 29.w,
-                )
-              ],
-            )
-          ],
+
           centerTitle: true,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black,
           bottom: PreferredSize(
             preferredSize: Size(double.infinity, 5),
             child: Container(
@@ -123,7 +113,11 @@ class _HomeState extends State<Home> {
                 gradient: LinearGradient(
                   begin: Alignment(1.00, 0.00),
                   end: Alignment(-1, 0),
-                  colors: [Color(0x00191919), Color(0xFF737373), Color(0x00191919)],
+                  colors: [
+                    Color(0x00191919),
+                    Color(0xFF737373),
+                    Color(0x00191919)
+                  ],
                 ),
               ),
             ),
@@ -329,7 +323,7 @@ class _HomeState extends State<Home> {
                         child: DotsIndicator(
                           dotsCount: 5,
                           position: _currentIndex,
-                          decorator: DotsDecorator(
+                          decorator: const DotsDecorator(
                             activeColor: Colors.white,
                             color: Color(0xFF5D5D5D),
                             spacing: EdgeInsets.all(2),
@@ -446,7 +440,7 @@ class _HomeState extends State<Home> {
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                   decoration: TextDecoration.underline,
-                                  decorationColor: Colors.white,
+                                  decorationColor: Color(0xfffefefe),
                                   decorationThickness: 1.w),
                             ),
                           )
@@ -505,158 +499,191 @@ class _HomeState extends State<Home> {
                         Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 8.h, horizontal: 16),
-                          child: SizedBox(
-                            height: 270.h,
-                            child: BlocBuilder<EventBloc, EventState>(
-                              builder: (context, state) {
-                                if (state is EventBloCLoading) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                    ),
-                                  );
-                                }
-                                if (state is EventBloCError) {
-                                  return Center(
-                                    child: Text('something else !!'),
-                                  );
-                                }
-                                if (state is EventBLoCLoaded) {
-                                  // data = BlocProvider.of.<EventBloc>(context).eventModel;
-                                }
-                                return ListView.separated(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 3,
-                                  itemBuilder: (context, position) {
-                                    return Column(
-                                      children: [
-                                        Stack(
-                                          children: [
-                                            Container(
-                                              width: 152.w,
-                                              height: 194.h,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: AssetImage(
-                                                      "assets/images/img1.png",
-                                                    ),
-                                                    fit: BoxFit.cover),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const PreEvent(
+                                            text:
+                                                'Yoga class with Arun Master and team.',
+                                            img: "assets/images/img1.png",
+                                          )));
+                            },
+                            child: SizedBox(
+                              height: 270.h,
+                              child: BlocBuilder<EventBloc, EventState>(
+                                builder: (context, state) {
+                                  if (state is EventBloCLoading) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                    );
+                                  }
+                                  if (state is EventBloCError) {
+                                    return const Center(
+                                      child: Text('something else !!'),
+                                    );
+                                  }
+                                  if (state is EventBLoCLoaded) {
+                                    // data = BlocProvider.of.<EventBloc>(context).eventModel;
+                                  }
+                                  return ListView.separated(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: 3,
+                                    itemBuilder: (context, position) {
+                                      return Column(
+                                        children: [
+                                          Stack(
+                                            children: [
+                                              Container(
+                                                width: 152.w,
+                                                height: 194.h,
+                                                decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                        "assets/images/img1.png",
+                                                      ),
+                                                      fit: BoxFit.cover),
+                                                ),
                                               ),
-                                            ),
-                                            Positioned(
-                                                top: 163.h,
+                                              Positioned(
+                                                  top: 163.h,
+                                                  child: Container(
+                                                    width: 152.w,
+                                                    height: 31.h,
+                                                    decoration: BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                        begin: Alignment(
+                                                            -0.00, 1.00),
+                                                        end: Alignment(0, -1),
+                                                        colors: [
+                                                          Color(0x91191919),
+                                                          Colors.black
+                                                              .withOpacity(
+                                                                  0.35),
+                                                          Color(0x00191919)
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  )),
+                                              Positioned(
+                                                left: 101.w,
+                                                top: 12.h,
                                                 child: Container(
-                                                  width: 152.w,
-                                                  height: 31.h,
-                                                  decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                      begin: Alignment(
-                                                          -0.00, 1.00),
-                                                      end: Alignment(0, -1),
-                                                      colors: [
-                                                        Color(0x91191919),
-                                                        Colors.black
-                                                            .withOpacity(0.35),
-                                                        Color(0x00191919)
-                                                      ],
+                                                  width: 52.w,
+                                                  height: 16.h,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                          color: Colors.black),
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Weekly',
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                        color: const Color(
+                                                            0xFFFEFEFE),
+                                                        fontSize: 10.sp,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
                                                     ),
                                                   ),
-                                                )),
-                                            Positioned(
-                                              left: 101.w,
-                                              top: 12.h,
-                                              child: Container(
-                                                width: 52.w,
-                                                height: 16.h,
-                                                decoration: const BoxDecoration(
-                                                    color: Colors.black),
-                                                child: Center(
-                                                  child: Text(
-                                                    'Weekly',
-                                                    style:
-                                                        GoogleFonts.montserrat(
+                                                ),
+                                              ),
+                                              Positioned(
+                                                left: 15.w,
+                                                top: 172.h,
+                                                child: SizedBox(
+                                                  width: 16.w,
+                                                  height: 16.h,
+                                                  child: Image.asset(
+                                                    'assets/icons/groupIcon.png',
+                                                    height: 28.h,
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                left: 39.w,
+                                                top: 175.h,
+                                                child: Text(
+                                                  '17 booked',
+                                                  style: GoogleFonts.montserrat(
+                                                    color:
+                                                        const Color(0xFFFEFEFE),
+                                                    fontSize: 10.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 4.w),
+                                            child: SizedBox(
+                                              width: 153.w,
+                                              child: Text(
+                                                'Yoga class with Arun Master and team.',
+                                                style: GoogleFonts.montserrat(
+                                                  color: Colors.white,
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w400,
+                                                  height: 1.2.h,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 4.h),
+                                            child: SizedBox(
+                                              width: 153.w,
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    'Fri, Dec 23',
+                                                    style: GoogleFonts.inter(
                                                       color: const Color(
-                                                          0xFFFEFEFE),
+                                                          0xFF818181),
                                                       fontSize: 10.sp,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                     ),
                                                   ),
-                                                ),
+                                                  const SizedBox(
+                                                    width: 4,
+                                                  ),
+                                                  Text(
+                                                    '8:30am - 9:30am',
+                                                    style: GoogleFonts.inter(
+                                                      color: const Color(
+                                                          0xFF818181),
+                                                      fontSize: 10.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                            Positioned(
-                                              left: 15.w,
-                                              top: 172.h,
-                                              child: SizedBox(
-                                                width: 16.w,
-                                                height: 16.h,
-                                                child: Image.asset(
-                                                  'assets/icons/groupIcon.png',
-                                                  height: 28.h,
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                              left: 39.w,
-                                              top: 175.h,
-                                              child: Text(
-                                                '17 booked',
-                                                style: GoogleFonts.montserrat(
-                                                  color:
-                                                      const Color(0xFFFEFEFE),
-                                                  fontSize: 10.sp,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 4.w),
-                                          child: SizedBox(
-                                            width: 153.w,
-                                            child: Text(
-                                              'Yoga class with Arun Master and team.',
-                                              style: GoogleFonts.montserrat(
-                                                color: Colors.white,
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w400,
-                                                height: 1.2.h,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 4.h),
-                                          child: SizedBox(
-                                            width: 153.w,
-                                            child: Text(
-                                              'Fri, Dec 23 8:30am - 9:30am',
-                                              style: GoogleFonts.inter(
-                                                color: const Color(0xFF818181),
-                                                fontSize: 10.sp,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    );
-                                  },
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return SizedBox(
-                                      width: 23.w,
-                                    );
-                                  },
-                                );
-                              },
+                                          )
+                                        ],
+                                      );
+                                    },
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return SizedBox(
+                                        width: 23.w,
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),

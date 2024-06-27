@@ -13,9 +13,10 @@ class FacilityItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+
         CircleAvatar(
           backgroundColor: const Color(0xFF272727),
-          radius: 40.r,
+          radius: 35.r,
           child: Image.asset(
             icon,
             height: 28.h,
@@ -27,7 +28,7 @@ class FacilityItem extends StatelessWidget {
         Text(
           text,
           style: GoogleFonts.montserrat(
-            color: Colors.white,
+            color: const Color(0xfffefefe),
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
           ),

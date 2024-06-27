@@ -73,535 +73,548 @@ class _AccountState extends State<Account> {
         ),
       ),
       extendBodyBehindAppBar: true,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment(0, -1),
+                end: Alignment(0, 1),
+                colors: [Color(0xFF1F1F1F), Color(0xFF191919)],
+              ),
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Opacity(
-                  opacity: 0.5,
-                  child: CarouselSlider.builder(
-                    itemCount: 3,
-                    itemBuilder: (BuildContext context, int itemIndex,
-                            int pageViewIndex) =>
-                        Container(
-                      width: double.infinity,
-                      height: 280.h,
-                      decoration: BoxDecoration(
-                        image: const DecorationImage(
-                          image: AssetImage(
-                            "assets/images/imgym.png",
+                Stack(
+                  children: [
+                    Opacity(
+                      opacity: 0.5,
+                      child: CarouselSlider.builder(
+                        itemCount: 3,
+                        itemBuilder: (BuildContext context, int itemIndex,
+                                int pageViewIndex) =>
+                            Container(
+                          width: double.infinity,
+                          height: 280.h,
+                          decoration: BoxDecoration(
+                            image: const DecorationImage(
+                              image: AssetImage(
+                                "assets/images/imgym.png",
+                              ),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          fit: BoxFit.cover,
+                          // child: BackdropFilter(
+                          //   filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          //   child: Container(
+                          //     decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
+                          //   ),
+                          // ),
+                        ),
+                        options: CarouselOptions(
+                          viewportFraction: 1.0,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              _currentIndex = index;
+                            });
+                          },
+                          enlargeCenterPage: false,
+                          enableInfiniteScroll: true,
+                          aspectRatio: 400 / 64,
+                          height: 280.h,
                         ),
                       ),
-                      // child: BackdropFilter(
-                      //   filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                      //   child: Container(
-                      //     decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
-                      //   ),
-                      // ),
                     ),
-                    options: CarouselOptions(
-                      viewportFraction: 1.0,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          _currentIndex = index;
-                        });
-                      },
-                      enlargeCenterPage: false,
-                      enableInfiniteScroll: true,
-                      aspectRatio: 400 / 64,
-                      height: 280.h,
-                    ),
-                  ),
-                ),
-                // Container(
-                //   width: double.infinity.w,
-                //   height: 280.h,
-                //   decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
-                // ),
-                Positioned(
-                  left: 195.w,
-                  // right: 195.w,
-                  top: 265.h,
-                  child: Center(
-                    child: DotsIndicator(
-                      dotsCount: 3,
-                      position: _currentIndex,
-                      decorator: DotsDecorator(
-                        activeColor: Colors.white,
-                        color: Color(0xFF5D5D5D),
-                        spacing: EdgeInsets.all(2.w),
-                        activeSize: Size(10, 8),
-                        size: Size(9, 4),
+                    // Container(
+                    //   width: double.infinity.w,
+                    //   height: 280.h,
+                    //   decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
+                    // ),
+                    Positioned(
+                      left: 195.w,
+                      // right: 195.w,
+                      top: 265.h,
+                      child: Center(
+                        child: DotsIndicator(
+                          dotsCount: 3,
+                          position: _currentIndex,
+                          decorator: DotsDecorator(
+                            activeColor: Colors.white,
+                            color: Color(0xFF5D5D5D),
+                            spacing: EdgeInsets.all(2.w),
+                            activeSize: Size(10, 8),
+                            size: Size(9, 4),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: 40.h, bottom: 32.h, left: 25.w, right: 25.w),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 72.w,
-                    height: 72.h,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFF272727),
-                      shape: OvalBorder(
-                        side: BorderSide(width: 1.w, color: Color(0xFFE4E4E4)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 24.w,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: 40.h, bottom: 32.h, left: 25.w, right: 25.w),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        'GymFit Fitnesss Club',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.montserrat(
-                          color: Colors.white,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w500,
+                      Container(
+                        width: 72.w,
+                        height: 72.h,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFF272727),
+                          shape: OvalBorder(
+                            side: BorderSide(width: 1.w, color: Color(0xFFE4E4E4)),
+                          ),
                         ),
                       ),
                       SizedBox(
-                        height: 8.h,
+                        width: 24.w,
                       ),
-                      Text.rich(
-                        TextSpan(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'GymFit Fitnesss Club',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                              color: Colors.white,
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Fitness Club  ',
+                                  style: GoogleFonts.montserrat(
+                                    color: Color(0xFF6F6F70),
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '|  ',
+                                  style: GoogleFonts.montserrat(
+                                    color: Color(0xFF6F6F70),
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: 'Male, Female',
+                                  style: GoogleFonts.montserrat(
+                                    color: Color(0xFF6F6F70),
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
+                  child: Container(
+                    width: double.infinity,
+                    height: 86.h,
+                    decoration: BoxDecoration(color: Color(0xFF282828)),
+                    padding: EdgeInsets.all(14.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            TextSpan(
-                              text: 'Fitness Club  ',
+                            Text(
+                              'Ratings & reviews',
                               style: GoogleFonts.montserrat(
                                 color: Color(0xFF6F6F70),
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
-                            TextSpan(
-                              text: '|  ',
-                              style: GoogleFonts.montserrat(
-                                color: Color(0xFF6F6F70),
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'Male, Female',
-                              style: GoogleFonts.montserrat(
-                                color: Color(0xFF6F6F70),
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
+                            SizedBox(
+                              width: 260.w,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '4.3',
+                                    style: GoogleFonts.montserrat(
+                                      color: Colors.white,
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 81.43.w,
+                                    height: 14.h,
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          width: 15.w,
+                                          height: 14.h,
+                                          decoration: ShapeDecoration(
+                                            color: Color(0xFF00FF00),
+                                            shape: StarBorder(
+                                              points: 5,
+                                              innerRadiusRatio: 0.49,
+                                              pointRounding: 0,
+                                              valleyRounding: 0,
+                                              rotation: 0,
+                                              squash: 0,
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 16.07.w,
+                                          top: 0.h,
+                                          child: Container(
+                                            width: 16.15.w,
+                                            height: 14.h,
+                                            decoration: ShapeDecoration(
+                                              color: Color(0xFF00FF00),
+                                              shape: StarBorder(
+                                                points: 5,
+                                                innerRadiusRatio: 0.49,
+                                                pointRounding: 0,
+                                                valleyRounding: 0,
+                                                rotation: 0,
+                                                squash: 0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 50.36.w,
+                                          top: 0.h,
+                                          child: Container(
+                                            width: 15.w,
+                                            height: 14.h,
+                                            decoration: ShapeDecoration(
+                                              color: Color(0xFF00FF00),
+                                              shape: StarBorder(
+                                                points: 5,
+                                                innerRadiusRatio: 0.49,
+                                                pointRounding: 0,
+                                                valleyRounding: 0,
+                                                rotation: 0,
+                                                squash: 0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 33.21.w,
+                                          top: 0.h,
+                                          child: Container(
+                                            width: 16.15.w,
+                                            height: 14.h,
+                                            decoration: ShapeDecoration(
+                                              color: Color(0xFF00FF00),
+                                              shape: StarBorder(
+                                                points: 5,
+                                                innerRadiusRatio: 0.49,
+                                                pointRounding: 0,
+                                                valleyRounding: 0,
+                                                rotation: 0,
+                                                squash: 0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 66.43.w,
+                                          top: 0.h,
+                                          child: Container(
+                                            width: 15.w,
+                                            height: 14.h,
+                                            decoration: ShapeDecoration(
+                                              color: Color(0xFFE4E4E4),
+                                              shape: StarBorder(
+                                                points: 5,
+                                                innerRadiusRatio: 0.49,
+                                                pointRounding: 0,
+                                                valleyRounding: 0,
+                                                rotation: 0,
+                                                squash: 0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Text(
+                                    'Based 53 reviews',
+                                    style: GoogleFonts.montserrat(
+                                      color: Color(0xFF6F6F70),
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
-              child: Container(
-                width: double.infinity,
-                height: 86.h,
-                decoration: BoxDecoration(color: Color(0xFF282828)),
-                padding: EdgeInsets.all(14.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Ratings & reviews',
-                          style: GoogleFonts.montserrat(
-                            color: Color(0xFF6F6F70),
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12.w),
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.white,
+                            size: 18.sp,
                           ),
-                        ),
-                        SizedBox(
-                          width: 260.w,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '4.3',
-                                style: GoogleFonts.montserrat(
-                                  color: Colors.white,
-                                  fontSize: 24.sp,
-                                  fontWeight: FontWeight.w700,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => const Members()));
+                          },
+                          child: Container(
+                            width: 180.w,
+                            height: 86.h,
+                            decoration:
+                                const BoxDecoration(color: Color(0xFF282828)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 22.w, vertical: 14.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Members',
+                                  style: GoogleFonts.montserrat(
+                                    color: Color(0xFF6F6F70),
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 81.43.w,
-                                height: 14.h,
-                                child: Stack(
+                                Row(
                                   children: [
-                                    Container(
-                                      width: 15.w,
-                                      height: 14.h,
-                                      decoration: ShapeDecoration(
-                                        color: Color(0xFF00FF00),
-                                        shape: StarBorder(
-                                          points: 5,
-                                          innerRadiusRatio: 0.49,
-                                          pointRounding: 0,
-                                          valleyRounding: 0,
-                                          rotation: 0,
-                                          squash: 0,
-                                        ),
+                                    Text(
+                                      '259',
+                                      style: GoogleFonts.montserrat(
+                                        color: Colors.white,
+                                        fontSize: 24.sp,
+                                        fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    Positioned(
-                                      left: 16.07.w,
-                                      top: 0.h,
-                                      child: Container(
-                                        width: 16.15.w,
-                                        height: 14.h,
-                                        decoration: ShapeDecoration(
-                                          color: Color(0xFF00FF00),
-                                          shape: StarBorder(
-                                            points: 5,
-                                            innerRadiusRatio: 0.49,
-                                            pointRounding: 0,
-                                            valleyRounding: 0,
-                                            rotation: 0,
-                                            squash: 0,
-                                          ),
-                                        ),
-                                      ),
+                                    SizedBox(
+                                      width: 8.w,
                                     ),
-                                    Positioned(
-                                      left: 50.36.w,
-                                      top: 0.h,
-                                      child: Container(
-                                        width: 15.w,
-                                        height: 14.h,
-                                        decoration: ShapeDecoration(
-                                          color: Color(0xFF00FF00),
-                                          shape: StarBorder(
-                                            points: 5,
-                                            innerRadiusRatio: 0.49,
-                                            pointRounding: 0,
-                                            valleyRounding: 0,
-                                            rotation: 0,
-                                            squash: 0,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 33.21.w,
-                                      top: 0.h,
-                                      child: Container(
-                                        width: 16.15.w,
-                                        height: 14.h,
-                                        decoration: ShapeDecoration(
-                                          color: Color(0xFF00FF00),
-                                          shape: StarBorder(
-                                            points: 5,
-                                            innerRadiusRatio: 0.49,
-                                            pointRounding: 0,
-                                            valleyRounding: 0,
-                                            rotation: 0,
-                                            squash: 0,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 66.43.w,
-                                      top: 0.h,
-                                      child: Container(
-                                        width: 15.w,
-                                        height: 14.h,
-                                        decoration: ShapeDecoration(
-                                          color: Color(0xFFE4E4E4),
-                                          shape: StarBorder(
-                                            points: 5,
-                                            innerRadiusRatio: 0.49,
-                                            pointRounding: 0,
-                                            valleyRounding: 0,
-                                            rotation: 0,
-                                            squash: 0,
-                                          ),
-                                        ),
+                                    Text(
+                                      '(56 active)',
+                                      style: GoogleFonts.montserrat(
+                                        color: Color(0xFFFEFEFE),
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                              Text(
-                                'Based 53 reviews',
-                                style: GoogleFonts.montserrat(
-                                  color: Color(0xFF6F6F70),
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      child: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.white,
-                        size: 18.sp,
                       ),
-                    )
-                  ],
+                      SizedBox(width: 16.w),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => const Wallet()));
+                          },
+                          child: Container(
+                            width: 180.w,
+                            height: 86.h,
+                            decoration: BoxDecoration(color: Color(0xFF282828)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 22.w, vertical: 14.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Wallet',
+                                  style: GoogleFonts.montserrat(
+                                    color: Color(0xFF6F6F70),
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '₹ 5350.',
+                                      style: GoogleFonts.montserrat(
+                                        color: Colors.white,
+                                        fontSize: 24.sp,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 8.w,
+                                    ),
+                                    Text(
+                                      '35',
+                                      style: GoogleFonts.montserrat(
+                                        color: Color(0xFFFEFEFE),
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => const Members()));
-                      },
-                      child: Container(
-                        width: 180.w,
-                        height: 86.h,
-                        decoration:
-                            const BoxDecoration(color: Color(0xFF282828)),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 22.w, vertical: 14.h),
+                Padding(
+                  padding: EdgeInsets.all(25.w),
+                  child: Text(
+                    'Basic information',
+                    style: GoogleFonts.montserrat(
+                      color: Color(0xFFA3A3A3),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Members',
-                              style: GoogleFonts.montserrat(
-                                color: Color(0xFF6F6F70),
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            InfoKey(keyText: 'Facility name'),
+                            SizedBox(
+                              height: 16.h,
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  '259',
-                                  style: GoogleFonts.montserrat(
-                                    color: Colors.white,
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8.w,
-                                ),
-                                Text(
-                                  '(56 active)',
-                                  style: GoogleFonts.montserrat(
-                                    color: Color(0xFFFEFEFE),
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
+                            InfoKey(keyText: 'Gender'),
+                            SizedBox(
+                              height: 16.h,
                             ),
+                            InfoKey(keyText: 'Email address'),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            InfoKey(keyText: 'Website'),
                           ],
                         ),
                       ),
-                    ),
-                  ),
-                  SizedBox(width: 16.w),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => const Wallet()));
-                      },
-                      child: Container(
-                        width: 180.w,
-                        height: 86.h,
-                        decoration: BoxDecoration(color: Color(0xFF282828)),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 22.w, vertical: 14.h),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Wallet',
-                              style: GoogleFonts.montserrat(
-                                color: Color(0xFF6F6F70),
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            InfoValue(ValueText: 'GymFit Fitness Club'),
+                            SizedBox(
+                              height: 16.h,
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  '₹ 5350.',
-                                  style: GoogleFonts.montserrat(
-                                    color: Colors.white,
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8.w,
-                                ),
-                                Text(
-                                  '35',
-                                  style: GoogleFonts.montserrat(
-                                    color: Color(0xFFFEFEFE),
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
+                            InfoValue(ValueText: 'Male, Female'),
+                            SizedBox(
+                              height: 16.h,
                             ),
+                            InfoValue(ValueText: 'gymfitclub@gmail.com'),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            InfoValue(ValueText: 'www.gymfitclub.in'),
                           ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(25.w),
-              child: Text(
-                'Basic information',
-                style: GoogleFonts.montserrat(
-                  color: Color(0xFFA3A3A3),
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InfoKey(keyText: 'Facility name'),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        InfoKey(keyText: 'Gender'),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        InfoKey(keyText: 'Email address'),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        InfoKey(keyText: 'Website'),
-                      ],
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 24.h),
+                  child: Text(
+                    'Contact person',
+                    style: GoogleFonts.montserrat(
+                      color: Color(0xFFA3A3A3),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InfoValue(ValueText: 'GymFit Fitness Club'),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        InfoValue(ValueText: 'Male, Female'),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        InfoValue(ValueText: 'gymfitclub@gmail.com'),
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        InfoValue(ValueText: 'www.gymfitclub.in'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 24.h),
-              child: Text(
-                'Contact person',
-                style: GoogleFonts.montserrat(
-                  color: Color(0xFFA3A3A3),
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InfoKey(keyText: 'Name'),
-                        SizedBox(
-                          height: 16.h,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 8.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InfoKey(keyText: 'Name'),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            InfoKey(keyText: 'Phone number')
+                          ],
                         ),
-                        InfoKey(keyText: 'Phone number')
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InfoValue(ValueText: 'Bijoy Krishna'),
-                        SizedBox(
-                          height: 16.h,
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InfoValue(ValueText: 'Bijoy Krishna'),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            InfoValue(ValueText: '+91 9895 00 8900'),
+                          ],
                         ),
-                        InfoValue(ValueText: '+91 9895 00 8900'),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                GymFitSettingsList()
+              ],
             ),
-            GymFitSettingsList()
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

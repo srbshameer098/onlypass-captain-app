@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled7/components/profile.dart';
 
 import 'Bottomsheet1.dart';
+
 class BottomSheetDetails extends StatefulWidget {
   const BottomSheetDetails({super.key});
 
@@ -12,20 +13,28 @@ class BottomSheetDetails extends StatefulWidget {
 }
 
 class _BottomSheetDetailsState extends State<BottomSheetDetails> {
+
+  bool _isClicked = false;
+
+  void _toggleButton() {
+    setState(() {
+      _isClicked = !_isClicked;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 25.w,vertical: 08.0.h),
+        padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 08.0.h),
         width: double.infinity.w,
-        height: 700.h,
+        height: 628.h,
         decoration: BoxDecoration(color: Color(0xFF191919)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding:  EdgeInsets.all(8.0.w),
+              padding: EdgeInsets.all(8.0.w),
               child: Center(
                 child: Container(
                   width: 44.w,
@@ -39,7 +48,9 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                 ),
               ),
             ),
-            SizedBox(height: 20.h,),
+            SizedBox(
+              height: 20.h,
+            ),
             Container(
               width: 96.w,
               height: 96.h,
@@ -52,7 +63,7 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.all(16.0.w),
+              padding: EdgeInsets.all(16.0.w),
               child: Text(
                 'Jerin Varghese',
                 style: GoogleFonts.montserrat(
@@ -63,19 +74,21 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
               ),
             ),
             GestureDetector(
-              onTap: (){
-
-                showModalBottomSheet(isScrollControlled: true,context: context, builder:(BuildContext){
-                  return ProfileBottomSheet();
-                });
-
+              onTap: () {
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (BuildContext) {
+                      return ProfileBottomSheet();
+                    });
               },
               child: Container(
                 width: 95.w,
                 height: 24.h,
                 decoration: ShapeDecoration(
                   color: Color(0xFF282828),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1.r)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(1.r)),
                 ),
                 child: Center(
                   child: Text(
@@ -89,14 +102,17 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                 ),
               ),
             ),
-            SizedBox(height: 40.h,),
+            SizedBox(
+              height: 40.h,
+            ),
             Container(
               padding: EdgeInsets.all(24.w),
               width: double.infinity.w,
               height: 138.h,
               decoration: ShapeDecoration(
                 color: Color(0xFF282828),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(1)),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,8 +121,14 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.sentiment_satisfied_rounded,color: Color(0xFF00FF00),size: 16,),
-                      SizedBox(width: 12.w,),
+                      Icon(
+                        Icons.sentiment_satisfied_rounded,
+                        color: Color(0xFF00FF00),
+                        size: 16,
+                      ),
+                      SizedBox(
+                        width: 12.w,
+                      ),
                       Row(
                         children: [
                           Text.rich(
@@ -136,7 +158,6 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-
                               ],
                             ),
                           ),
@@ -152,7 +173,9 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                         height: 46.h,
                         decoration: BoxDecoration(color: Color(0xFF00FF00)),
                       ),
-                      SizedBox(width: 16.w,),
+                      SizedBox(
+                        width: 16.w,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -164,7 +187,9 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          SizedBox(height: 6.h,),
+                          SizedBox(
+                            height: 6.h,
+                          ),
                           Row(
                             children: [
                               Text(
@@ -175,7 +200,9 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              SizedBox(width: 16.w,),
+                              SizedBox(
+                                width: 16.w,
+                              ),
                               Text(
                                 '10 : 26 am',
                                 style: GoogleFonts.montserrat(
@@ -186,7 +213,6 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                               )
                             ],
                           )
-
                         ],
                       )
                     ],
@@ -194,18 +220,21 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                 ],
               ),
             ),
-            SizedBox(height: 103.h,),
+            SizedBox(
+              height: 103.h,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pop(context);
                   },
                   child: Container(
                     decoration: ShapeDecoration(
                       color: Color(0xFF282828),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1.r)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(1.r)),
                     ),
                     width: 176.w,
                     height: 48.h,
@@ -221,25 +250,30 @@ class _BottomSheetDetailsState extends State<BottomSheetDetails> {
                     ),
                   ),
                 ),
-                SizedBox(width: 24.w,),
+                SizedBox(
+                  width: 24.w,
+                ),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.pop(context);
-                   showModalBottomSheet(isScrollControlled: true,context: context, builder:(BuildContext){
-                     return BottomSheetDetails1();
-                   });
-
+                  onTap: () {
+                    // Navigator.pop(context);
+                    // showModalBottomSheet(
+                    //     isScrollControlled: true,
+                    //     context: context,
+                    //     builder: (BuildContext) {
+                    //       return BottomSheetDetails1();
+                    //     });
+                    _toggleButton();
                   },
                   child: Container(
                     decoration: ShapeDecoration(
                       color: Color(0xFFFEFEFE),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1.r)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(1.r)),
                     ),
                     width: 176.w,
                     height: 48.h,
                     child: Center(
-                      child: Text(
-                        'Grand access',
+                      child: Text(_isClicked ? 'Mark attendance' : 'Grand access',
                         style: GoogleFonts.poppins(
                           color: Color(0xFF191919),
                           fontSize: 14.sp,

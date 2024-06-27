@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -61,6 +62,7 @@ class _S1State extends State<S1> {
               onTap: () {
                 setState(() => _currentIndex = itemIndex);
                 _controller.jumpToPage(itemIndex);
+                HapticFeedback.lightImpact();
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -121,11 +123,12 @@ class _S1State extends State<S1> {
           ),
           options: CarouselOptions(
             initialPage: 1,
-            autoPlay: false,
-            viewportFraction: 0.285,
+            autoPlay: false,            viewportFraction: 0.285,
+
             onPageChanged: (index, reason) {
               setState(() {
                 _currentIndex = index;
+                HapticFeedback.lightImpact();
               });
             },
             enlargeCenterPage: false,

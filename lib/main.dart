@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled7/Bloc/Event_Creation/event_bloc.dart';
 import 'package:untitled7/Bloc/LogIn/log_in_bloc.dart';
-import 'package:untitled7/UI/s1.dart';
 
+import 'UI/Pages/splash_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -33,13 +33,19 @@ class MyApp extends StatelessWidget {
           ],
           child: MaterialApp(
             title: 'Captain',
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+            theme:
+            // ThemeData.dark(
+            //     useMaterial3: true,
+            //
+            // ),
+            ThemeData(
+
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey.shade900),
               useMaterial3: true,
               fontFamily: 'Montserrat',
             ),
-            debugShowCheckedModeBanner: true,
-            home: const S1(),
+            debugShowCheckedModeBanner: false,
+            home: const SplashScreen(),
           ),
         );
       },

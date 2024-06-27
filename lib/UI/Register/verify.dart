@@ -70,7 +70,7 @@ class _VerifyState extends State<Verify> {
                     ),
                   ),
                   Text(
-                    'A verification code has been sent to ${widget.phoneNum}',
+                    'A verification code has been sent to +91 ${widget.phoneNum}',
                     style: GoogleFonts.montserrat(
                       color: const Color(0xFF6F6F70),
                       fontSize: 12.sp,
