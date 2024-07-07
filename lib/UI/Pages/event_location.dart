@@ -15,7 +15,7 @@ class EventLocation extends StatefulWidget {
 
 bool _isSelectedAt = true;
 bool _isSelectedOther = false;
-
+String Locatoin = 'description';
 class _EventLocationState extends State<EventLocation> {
   @override
   Widget build(BuildContext context) {
@@ -104,6 +104,7 @@ class _EventLocationState extends State<EventLocation> {
             GestureDetector(
               onTap: (){
                   _isSelectedAt ;
+                 Locatoin = 'description' ;
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),

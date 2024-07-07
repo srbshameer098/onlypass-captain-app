@@ -156,7 +156,7 @@ class _EventConfirmState extends State<EventConfirm> {
             Padding(
               padding: EdgeInsets.only(top: 12.h, bottom: 32.h),
               child: Text(
-                'Yoga with Arun Master & team - Beginner level',
+                eventController.text,
                 style: GoogleFonts.montserrat(
                   color: Color(0xFFFEFEFE),
                   fontSize: 14,
@@ -193,7 +193,7 @@ class _EventConfirmState extends State<EventConfirm> {
                       Padding(
                         padding: EdgeInsets.only(top: 12.h, bottom: 32.h),
                         child: Text(
-                          'Yoga',
+                          eventCategoryController.text,
                           style: GoogleFonts.montserrat(
                             color: Color(0xFFFEFEFE),
                             fontSize: 14,
@@ -234,7 +234,7 @@ class _EventConfirmState extends State<EventConfirm> {
                       Padding(
                         padding: EdgeInsets.only(top: 12.h, bottom: 32.h),
                         child: Text(
-                          'Paid',
+                          dropdownValue == ('Free')? 'Free': 'Paid',
                           style: GoogleFonts.montserrat(
                             color: Color(0xFFFEFEFE),
                             fontSize: 14,
@@ -399,188 +399,159 @@ class _EventConfirmState extends State<EventConfirm> {
             ),
 
 
-            Padding(
-              padding: EdgeInsets.only(top: 24.w),
-              child: BlocListener<EventBloc, EventState>(
-                listener: (context, state) {
-                  if (state is EventBLoCLoaded) {
-                    BlocProvider.of<EventBloc>(context)
-                        .eventModel
-                        ;
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (_) => const S1()),
-                          (Route<dynamic> route) => false,
-                    );
-                  } else if (state is EventBloCError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-
-                        content: const Text(
-                          'Login failed. Please try again.',
-                          style: TextStyle(color: Colors.red),
-                        ),
-                        backgroundColor: Colors.red[50],
-                      ),
-                    );
-                  }
-                  // TODO: implement listener
-                },
-
-                    child: GestureDetector(
-                      onTap: () {
-                        // showDialog(
-                        //   context: context,
-                        //   builder: (context) {
-                        //     return AlertDialog(
-                        //       backgroundColor: Color(0xFF191919),
-                        //       shape:
-                        //       Border.all(color: Colors.transparent, width: 0),
-                        //       title: Container(
-                        //         // width: 375,
-                        //         // height: 300,
-                        //         padding: EdgeInsets.symmetric(
-                        //             horizontal: 90.w, vertical: 50.h),
-                        //         decoration:
-                        //         const BoxDecoration(color: Color(0xFF191919)),
-                        //         child: Center(
-                        //           child: Column(
-                        //             crossAxisAlignment: CrossAxisAlignment.center,
-                        //             children: [
-                        //               Container(
-                        //                 width: 72,
-                        //                 height: 72,
-                        //                 decoration: ShapeDecoration(
-                        //                   color: Color(0xFF272727),
-                        //                   shape: OvalBorder(),
-                        //                 ),
-                        //                 child: Center(
-                        //                   child: Icon(
-                        //                     Icons.check_rounded,
-                        //                     color: Color(0xFF37F840),
-                        //                     size: 50,
-                        //                   ),
-                        //                 ),
-                        //               ),
-                        //               SizedBox(
-                        //                 height: 12.h,
-                        //               ),
-                        //               Text(
-                        //                 'success!',
-                        //                 style: GoogleFonts.montserrat(
-                        //                   color: Colors.white,
-                        //                   fontSize: 16.sp,
-                        //                   fontWeight: FontWeight.w600,
-                        //                 ),
-                        //               ),
-                        //               SizedBox(
-                        //                 height: 12.h,
-                        //               ),
-                        //               SizedBox(
-                        //                 width: 200,
-                        //                 child: Text(
-                        //                   'Event has been created successfully.',
-                        //                   textAlign: TextAlign.center,
-                        //                   style: GoogleFonts.montserrat(
-                        //                     color: Colors.white,
-                        //                     fontSize: 12.sp,
-                        //                     fontWeight: FontWeight.w400,
-                        //                     height: 0,
-                        //                   ),
-                        //                 ),
-                        //               )
-                        //             ],
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     );
-                        //   },
-                        // );
-                        // BlocListener<EventBloc, EventState>(
-                        //   listener: (context, state) {
-                        //     if (state is EventBloCLoading) {
-                        //       print('loading');
-                        //       const Center(
-                        //         child: CircularProgressIndicator(),
-                        //       );
-                        //     }
-                        //
-                        //     if (state is EventBLoCLoaded) {
-                        //       BlocProvider.of<EventBloc>(context).add(FetchEvent(
-                        //           name: 'name',
-                        //           facility: 'facility',
-                        //           description: 'description',
-                        //           image: 'image',
-                        //           eventLeader: 'eventLeader',
-                        //           startDate: 'startDate',
-                        //           endDate: 'endDate',
-                        //           fee: false,
-                        //           amount: 'amount',
-                        //           availableSlot: 'availableSlot',
-                        //           repeatEndDate: 'repeatEndDate',
-                        //           repetDays: ['repetDays', 'fgd'],
-                        //           eventAddress: 'eventAddress',
-                        //           eventLat_Long: 'eventLat_Long',
-                        //           id: 'id',
-                        //           createdAt: 'createdAt',
-                        //           updatedAt: 'updatedAt',
-                        //           v: 'v')
-                        //
-                        //
-                        //       );
-                        //
-                        //       print(
-                        //           'loaded*************************************************');
-                        //       Navigator.of(context).pop();
-                        //     }
-                        //     if (state is EventBloCError) {
-                        //       Center(child: Text('Oops Something Went Wrong'));
-                        //       print('error');
-                        //     }
-                        //     // TODO: implement listener
-                        //   },);
-                        BlocProvider.of<EventBloc>(context).add(FetchEvent(
-                            name: 'name',
-                            facility: 'facility',
-                            description: 'description',
-                            image: 'image',
-                            eventLeader: 'eventLeader',
-                            startDate: 'startDate',
-                            endDate: 'endDate',
-                            fee: false,
-                            amount: 'amount',
-                            availableSlot: 'availableSlot',
-                            repeatEndDate: 'repeatEndDate',
-                            repetDays: ['repetDays', 'fgd'],
-                            eventAddress: 'eventAddress',
-                            eventLat_Long: 'eventLat_Long',
-                            id: 'id',
-                            createdAt: 'createdAt',
-                            updatedAt: 'updatedAt',
-                            v: 'v'));
-
-                        // print(data);
-                      },
-                      child: Container(
-                        height: 48,
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFEFEFE),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(1)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Confirm',
-                            style: GoogleFonts.poppins(
-                              color: Color(0xFF191919),
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w600,
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        backgroundColor: Color(0xFF191919),
+                        shape:
+                        Border.all(color: Colors.transparent, width: 0),
+                        title: Container(
+                          // width: 375,
+                          // height: 300,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 90.w, vertical: 50.h),
+                          decoration:
+                          const BoxDecoration(color: Color(0xFF191919)),
+                          child: Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 72,
+                                  height: 72,
+                                  decoration: ShapeDecoration(
+                                    color: Color(0xFF272727),
+                                    shape: OvalBorder(),
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.check_rounded,
+                                      color: Color(0xFF37F840),
+                                      size: 50,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 12.h,
+                                ),
+                                Text(
+                                  'success!',
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.white,
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 12.h,
+                                ),
+                                SizedBox(
+                                  width: 200,
+                                  child: Text(
+                                    'Event has been created successfully.',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.montserrat(
+                                      color: Colors.white,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ),
+                      );
+                    },
+                  );
+                  // BlocListener<EventBloc, EventState>(
+                  //   listener: (context, state) {
+                  //     if (state is EventBloCLoading) {
+                  //       print('loading');
+                  //       const Center(
+                  //         child: CircularProgressIndicator(),
+                  //       );
+                  //     }
+                  //
+                  //     if (state is EventBLoCLoaded) {
+                  //       BlocProvider.of<EventBloc>(context).add(FetchEvent(
+                  //           name: 'name',
+                  //           facility: 'facility',
+                  //           description: 'description',
+                  //           image: 'image',
+                  //           eventLeader: 'eventLeader',
+                  //           startDate: 'startDate',
+                  //           endDate: 'endDate',
+                  //           fee: false,
+                  //           amount: 'amount',
+                  //           availableSlot: 'availableSlot',
+                  //           repeatEndDate: 'repeatEndDate',
+                  //           repetDays: ['repetDays', 'fgd'],
+                  //           eventAddress: 'eventAddress',
+                  //           eventLat_Long: 'eventLat_Long',
+                  //           id: 'id',
+                  //           createdAt: 'createdAt',
+                  //           updatedAt: 'updatedAt',
+                  //           v: 'v')
+                  //
+                  //
+                  //       );
+                  //
+                  //       print(
+                  //           'loaded*************************************************');
+                  //       Navigator.of(context).pop();
+                  //     }
+                  //     if (state is EventBloCError) {
+                  //       Center(child: Text('Oops Something Went Wrong'));
+                  //       print('error');
+                  //     }
+                  //     // TODO: implement listener
+                  //   },);
+                  BlocProvider.of<EventBloc>(context).add(FetchEvent(
+                      name: 'name',
+                      facility: 'facility',
+                      description: 'description',
+                      image: 'image',
+                      eventLeader: 'eventLeader',
+                      startDate: 'startDate',
+                      endDate: 'endDate',
+                      fee: false,
+                      amount: 'amount',
+                      availableSlot: 'availableSlot',
+                      repeatEndDate: 'repeatEndDate',
+                      repetDays: ['repetDays', 'fgd'],
+                      eventAddress: 'eventAddress',
+                      eventLat_Long: 'eventLat_Long',
+                      id: 'id',
+                      createdAt: 'createdAt',
+                      updatedAt: 'updatedAt',
+                      v: 'v'));
+
+                  // print(data);
+                },
+                child: Container(
+                  height: 48,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFFEFEFE),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(1)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Confirm',
+                      style: GoogleFonts.poppins(
+                        color: Color(0xFF191919),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-
-
+                  ),
+                ),
               ),
             ),
 

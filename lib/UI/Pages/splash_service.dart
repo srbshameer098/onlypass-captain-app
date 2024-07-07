@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:untitled7/UI/s1.dart';
 
-import '../Register/Authentication.dart';
+
+import '../Register/log_in_page.dart';
 
 class Splash{
   void islogin(BuildContext context){
@@ -17,7 +18,7 @@ class Splash{
       ));
     }else{
       Timer(const Duration( seconds: 1 ),()=> Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const Authentification()), (Route<dynamic> route) => false,
+        MaterialPageRoute(builder: (_) => const LogInPage()), (Route<dynamic> route) => false,
       ));
     }
 

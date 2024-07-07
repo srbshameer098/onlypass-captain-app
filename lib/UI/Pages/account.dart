@@ -401,7 +401,7 @@ class _AccountState extends State<Account> {
                             decoration:
                                 const BoxDecoration(color: Color(0xFF282828)),
                             padding: EdgeInsets.symmetric(
-                                horizontal: 22.w, vertical: 14.h),
+                                horizontal: 13.w, vertical: 14.h),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -454,7 +454,7 @@ class _AccountState extends State<Account> {
                             height: 86.h,
                             decoration: BoxDecoration(color: Color(0xFF282828)),
                             padding: EdgeInsets.symmetric(
-                                horizontal: 22.w, vertical: 14.h),
+                                horizontal: 13.w, vertical: 14.h),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -470,7 +470,7 @@ class _AccountState extends State<Account> {
                                 Row(
                                   children: [
                                     Text(
-                                      '₹ 5350.',
+                                      '₹ 5350 .',
                                       style: GoogleFonts.montserrat(
                                         color: Colors.white,
                                         fontSize: 24.sp,

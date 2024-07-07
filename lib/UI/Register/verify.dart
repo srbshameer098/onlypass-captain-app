@@ -10,7 +10,7 @@ class Verify extends StatefulWidget {
   final String verificationId;
   final String phoneNum;
 
-  const Verify({super.key, required this.verificationId, required this.phoneNum});
+  const Verify({super.key, required this.verificationId, required this.phoneNum,required verificationcode});
 
   @override
   State<Verify> createState() => _VerifyState();

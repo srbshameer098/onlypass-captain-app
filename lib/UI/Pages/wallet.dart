@@ -405,7 +405,7 @@ class _WalletState extends State<Wallet> {
   Widget _buildTransferButtonContent() {
     return Container(
       height: 32.h,
-      padding:  EdgeInsets.symmetric(horizontal: 12.w,vertical: 6.h),
+      padding:  EdgeInsets.symmetric(horizontal: 10.w,vertical: 6.h),
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(

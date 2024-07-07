@@ -143,7 +143,7 @@ class _LogInPageState extends State<LogInPage> {
                                 focusedBorder: InputBorder.none,
                                 disabledBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
-                                hintText: 'Enter 10 Digit Mobile Number',
+                                hintText: 'Enter 10 Digit Mobile Numbers',
                                 hintStyle: TextStyle(
                                   color: Color(0xFF6F6F70),
                                   fontSize: 14,
@@ -187,7 +187,7 @@ class _LogInPageState extends State<LogInPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => Verify(
-                                    verificationId: verificationId, phoneNum: phoneNumberController.text.toString(),
+                                    verificationId: verificationId, phoneNum: phoneNumberController.text.toString(), verificationcode: token.toString(),
                                   ),
                                 ),
                               );

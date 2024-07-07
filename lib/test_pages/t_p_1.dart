@@ -86,6 +86,7 @@ class _EventDateTimePageState extends State<EventDateTimePage> {
                 SizedBox(width: 16),
                 Expanded(
                   child: TextFormField(
+
                     readOnly: true,
                     decoration: InputDecoration(
                       hintText: fromTime == null

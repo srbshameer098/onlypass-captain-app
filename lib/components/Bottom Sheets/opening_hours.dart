@@ -30,7 +30,7 @@ class _OpeningHoursState extends State<OpeningHours> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: 25.w,vertical: 8.h
+        horizontal: 13.w,vertical: 8.h
       ),
       width: double.infinity.w,
       height: 600.h,
@@ -90,35 +90,39 @@ class _OpeningHoursState extends State<OpeningHours> {
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
+                  padding:  EdgeInsets.only(top: 30.h),
                   child: Row(
                     children: [
-                      Text(
-                        'Morning',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Montserrat',
+                      SizedBox(width: 173.w,
+                        child: Text(
+                          'Morning',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Montserrat',
+                          ),
                         ),
                       ),
                       SizedBox(
-                        width: 135,
+                        width: 13.w,
                       ),
-                      Text(
-                        'Evening',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Montserrat',
+                      SizedBox(width:173.w,
+                        child: Text(
+                          'Evening',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Montserrat',
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 24.0),
+                  padding:  EdgeInsets.only(top: 24.h),
                   child: Column(
                     children: [
                       Row(
@@ -129,7 +133,7 @@ class _OpeningHoursState extends State<OpeningHours> {
                             height: 1150,
                             width: 190,
                             child: ListView.builder(
-                                physics: NeverScrollableScrollPhysics(
+                                physics: const NeverScrollableScrollPhysics(
                                     parent: NeverScrollableScrollPhysics()),
                                 itemCount: 7,
                                 itemBuilder: (BuildContext context, int index) {

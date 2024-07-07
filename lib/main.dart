@@ -8,15 +8,15 @@ import 'package:untitled7/Bloc/LogIn/log_in_bloc.dart';
 import 'Repository/API/Event_Api.dart';
 import 'UI/Pages/home.dart';
 import 'UI/Pages/splash_screen.dart';
-import 'UI/Register/Authentication.dart';
+
 import 'UI/s1.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
